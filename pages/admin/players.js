@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLayout from '../../src/layouts/admin';
+import AdminLayout from '../../src/components/layouts/admin';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Index() {
