@@ -616,15 +616,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mysql@npm:^2.15.6":
-  version: 2.15.19
-  resolution: "@types/mysql@npm:2.15.19"
-  dependencies:
-    "@types/node": "*"
-  checksum: aa926fdb40ec471b794a3951ca619803a367772a7837968990a5961e2214ccfea1f9ca2121222be7091511abf3db0f09d9c6ac151f40ad147d27e05ef8f7c2c8
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*":
   version: 16.11.6
   resolution: "@types/node@npm:16.11.6"
@@ -862,13 +853,6 @@ __metadata:
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
   checksum: b89b6e8419b097a8fb4ed2399a1931a68c612bce3cfd5ca8c214b2d017531191070f990598de2fc6f3f993d91c0f08aa82697717f6b3b8732c9731866d233c9e
-  languageName: node
-  linkType: hard
-
-"bignumber.js@npm:9.0.0":
-  version: 9.0.0
-  resolution: "bignumber.js@npm:9.0.0"
-  checksum: 51f37890bca58bded63720add832b1c4898cf5b8ad95b5d4d9c3e763c461163d0355d11d91b740b0216b02e4e8cbb02455b28ee32140b775d96a39bbd817fdf6
   languageName: node
   linkType: hard
 
@@ -2486,15 +2470,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"knex-serverless-mysql@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "knex-serverless-mysql@npm:1.1.0"
-  peerDependencies:
-    knex: ">=0.11.4"
-  checksum: 20b7f0f55c64ddecd0acde5b1e63e8ba7167e97a61d5c835883b63a1ba1eac9eba02823d70682bbddcc67ffc648f0480b7aedda7496ada6a036f3017af62eb00
-  languageName: node
-  linkType: hard
-
 "knex@npm:^0.95.11":
   version: 0.95.11
   resolution: "knex@npm:0.95.11"
@@ -2543,14 +2518,12 @@ fsevents@~2.3.1:
     "@next/env": ^12.0.1
     clsx: ^1.1.1
     knex: ^0.95.11
-    knex-serverless-mysql: ^1.1.0
     mysql2: ^2.3.2
     next: ^11.1.2
     next-i18next: ^8.9.0
     prop-types: ^15.7.2
     react: ^17.0.2
     react-dom: ^17.0.2
-    serverless-mysql: ^1.5.4
   languageName: unknown
   linkType: soft
 
@@ -2848,18 +2821,6 @@ fsevents@~2.3.1:
     seq-queue: ^0.0.5
     sqlstring: ^2.3.2
   checksum: 0648d5a93e04c79c7aa150f93ddc0e58f272925373a244664932accebbeaa76727c6e53be5e5c1c6e87fc471caa83d0125b6d442adb0ca4eb17422e07d3a58c6
-  languageName: node
-  linkType: hard
-
-"mysql@npm:^2.18.1":
-  version: 2.18.1
-  resolution: "mysql@npm:2.18.1"
-  dependencies:
-    bignumber.js: 9.0.0
-    readable-stream: 2.3.7
-    safe-buffer: 5.1.2
-    sqlstring: 2.3.1
-  checksum: 430dec8525e849bbb53f78ffc7aa85b2d1535f49f96ae06064089219cfabfdb9b4051e1fabcbacc0e5b85174ae4c762b071b99d4fb4d062e98f90e723b1def0a
   languageName: node
   linkType: hard
 
@@ -3585,7 +3546,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:2.3.7, readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.6, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.6":
+"readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.6, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.6":
   version: 2.3.7
   resolution: "readable-stream@npm:2.3.7"
   dependencies:
@@ -3710,17 +3671,17 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:5.1.2, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
-  version: 5.1.2
-  resolution: "safe-buffer@npm:5.1.2"
-  checksum: f2f1f7943ca44a594893a852894055cf619c1fbcb611237fc39e461ae751187e7baf4dc391a72125e0ac4fb2d8c5c0b3c71529622e6a58f46b960211e704903c
-  languageName: node
-  linkType: hard
-
 "safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
+  languageName: node
+  linkType: hard
+
+"safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
+  version: 5.1.2
+  resolution: "safe-buffer@npm:5.1.2"
+  checksum: f2f1f7943ca44a594893a852894055cf619c1fbcb611237fc39e461ae751187e7baf4dc391a72125e0ac4fb2d8c5c0b3c71529622e6a58f46b960211e704903c
   languageName: node
   linkType: hard
 
@@ -3765,19 +3726,6 @@ fsevents@~2.3.1:
   version: 0.0.5
   resolution: "seq-queue@npm:0.0.5"
   checksum: f8695a6cb613e1b378b9686cde4ea626944091a412fc1c9d24c5039283d4351dd115f4505e4cf103d3a2e4a9a6a72fc7698fdce703839fb1fec9627aa4ce5563
-  languageName: node
-  linkType: hard
-
-"serverless-mysql@npm:^1.5.4":
-  version: 1.5.4
-  resolution: "serverless-mysql@npm:1.5.4"
-  dependencies:
-    "@types/mysql": ^2.15.6
-    mysql: ^2.18.1
-  dependenciesMeta:
-    "@types/mysql":
-      optional: true
-  checksum: 00316f33bb5b1620b65dc34b45d553c52f25a402acea78b3a25bdef2636e156de13b0bee9e18a59dc79f90948deeb7b5d4355bf255aff6d4c93d52bf7a0f63c5
   languageName: node
   linkType: hard
 
@@ -3894,13 +3842,6 @@ fsevents@~2.3.1:
   version: 0.6.1
   resolution: "source-map@npm:0.6.1"
   checksum: 59ce8640cf3f3124f64ac289012c2b8bd377c238e316fb323ea22fbfe83da07d81e000071d7242cad7a23cd91c7de98e4df8830ec3f133cb6133a5f6e9f67bc2
-  languageName: node
-  linkType: hard
-
-"sqlstring@npm:2.3.1":
-  version: 2.3.1
-  resolution: "sqlstring@npm:2.3.1"
-  checksum: de4299cf9bd0f49abae5b4eddde42c7ae7c447e035498ec50b3264610d6f0efbe433eeed2d20d48b6362bf46fd96c85cf6db240e994dbe6d5c3f9dac6d7ffd31
   languageName: node
   linkType: hard
 

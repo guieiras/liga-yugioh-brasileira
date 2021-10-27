@@ -45,14 +45,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/env", "npm:12.0.1"],
             ["clsx", "npm:1.1.1"],
             ["knex", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:0.95.11"],
-            ["knex-serverless-mysql", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:1.1.0"],
             ["mysql2", "npm:2.3.2"],
             ["next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.1.2"],
             ["next-i18next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:8.9.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:17.0.2"],
-            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"],
-            ["serverless-mysql", "npm:1.5.4"]
+            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -888,16 +886,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@types/mysql", [
-        ["npm:2.15.19", {
-          "packageLocation": "./.yarn/cache/@types-mysql-npm-2.15.19-7baa81be41-aa926fdb40.zip/node_modules/@types/mysql/",
-          "packageDependencies": [
-            ["@types/mysql", "npm:2.15.19"],
-            ["@types/node", "npm:16.11.6"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@types/node", [
         ["npm:16.11.6", {
           "packageLocation": "./.yarn/cache/@types-node-npm-16.11.6-3a38cc239a-6e19634766.zip/node_modules/@types/node/",
@@ -1170,15 +1158,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/big.js-npm-5.2.2-e147c30820-b89b6e8419.zip/node_modules/big.js/",
           "packageDependencies": [
             ["big.js", "npm:5.2.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["bignumber.js", [
-        ["npm:9.0.0", {
-          "packageLocation": "./.yarn/cache/bignumber.js-npm-9.0.0-ce190bcd7c-51f37890bc.zip/node_modules/bignumber.js/",
-          "packageDependencies": [
-            ["bignumber.js", "npm:9.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3083,28 +3062,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["knex-serverless-mysql", [
-        ["npm:1.1.0", {
-          "packageLocation": "./.yarn/cache/knex-serverless-mysql-npm-1.1.0-760037c34b-20b7f0f55c.zip/node_modules/knex-serverless-mysql/",
-          "packageDependencies": [
-            ["knex-serverless-mysql", "npm:1.1.0"]
-          ],
-          "linkType": "SOFT",
-        }],
-        ["virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:1.1.0", {
-          "packageLocation": "./.yarn/__virtual__/knex-serverless-mysql-virtual-114251a418/0/cache/knex-serverless-mysql-npm-1.1.0-760037c34b-20b7f0f55c.zip/node_modules/knex-serverless-mysql/",
-          "packageDependencies": [
-            ["knex-serverless-mysql", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:1.1.0"],
-            ["@types/knex", null],
-            ["knex", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:0.95.11"]
-          ],
-          "packagePeers": [
-            "@types/knex",
-            "knex"
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["liga-yugioh-brasileira", [
         ["workspace:.", {
           "packageLocation": "./",
@@ -3120,14 +3077,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/env", "npm:12.0.1"],
             ["clsx", "npm:1.1.1"],
             ["knex", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:0.95.11"],
-            ["knex-serverless-mysql", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:1.1.0"],
             ["mysql2", "npm:2.3.2"],
             ["next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.1.2"],
             ["next-i18next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:8.9.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:17.0.2"],
-            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"],
-            ["serverless-mysql", "npm:1.5.4"]
+            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -3436,19 +3391,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["multipipe", "npm:1.0.2"],
             ["duplexer2", "npm:0.1.4"],
             ["object-assign", "npm:4.1.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["mysql", [
-        ["npm:2.18.1", {
-          "packageLocation": "./.yarn/cache/mysql-npm-2.18.1-8fdb56201f-430dec8525.zip/node_modules/mysql/",
-          "packageDependencies": [
-            ["mysql", "npm:2.18.1"],
-            ["bignumber.js", "npm:9.0.0"],
-            ["readable-stream", "npm:2.3.7"],
-            ["safe-buffer", "npm:5.1.2"],
-            ["sqlstring", "npm:2.3.1"]
           ],
           "linkType": "HARD",
         }]
@@ -4530,17 +4472,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["serverless-mysql", [
-        ["npm:1.5.4", {
-          "packageLocation": "./.yarn/cache/serverless-mysql-npm-1.5.4-ec3847cc90-00316f33bb.zip/node_modules/serverless-mysql/",
-          "packageDependencies": [
-            ["serverless-mysql", "npm:1.5.4"],
-            ["@types/mysql", "npm:2.15.19"],
-            ["mysql", "npm:2.18.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["set-blocking", [
         ["npm:2.0.0", {
           "packageLocation": "./.yarn/cache/set-blocking-npm-2.0.0-49e2cffa24-6e65a05f7c.zip/node_modules/set-blocking/",
@@ -4673,13 +4604,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["sqlstring", [
-        ["npm:2.3.1", {
-          "packageLocation": "./.yarn/cache/sqlstring-npm-2.3.1-2d4ffafe98-de4299cf9b.zip/node_modules/sqlstring/",
-          "packageDependencies": [
-            ["sqlstring", "npm:2.3.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:2.3.2", {
           "packageLocation": "./.yarn/cache/sqlstring-npm-2.3.2-56762cd529-6d17a604dc.zip/node_modules/sqlstring/",
           "packageDependencies": [
