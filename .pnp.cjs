@@ -50,7 +50,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next-i18next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:8.9.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:17.0.2"],
-            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"]
+            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"],
+            ["superjson", "npm:1.8.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -968,7 +969,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/agent-base-npm-6.0.2-428f325a93-f52b6872cc.zip/node_modules/agent-base/",
           "packageDependencies": [
             ["agent-base", "npm:6.0.2"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"]
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"]
           ],
           "linkType": "HARD",
         }]
@@ -978,7 +979,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/agentkeepalive-npm-4.1.4-4d5b41b4c1-d49c24d4b3.zip/node_modules/agentkeepalive/",
           "packageDependencies": [
             ["agentkeepalive", "npm:4.1.4"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"],
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"],
             ["depd", "npm:1.1.2"],
             ["humanize-ms", "npm:1.2.1"]
           ],
@@ -1831,10 +1832,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2", {
-          "packageLocation": "./.yarn/__virtual__/debug-virtual-8ec8e55979/0/cache/debug-npm-4.3.2-f0148b6afe-820ea160e2.zip/node_modules/debug/",
+        ["virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2", {
+          "packageLocation": "./.yarn/__virtual__/debug-virtual-a3c0b01614/0/cache/debug-npm-4.3.2-f0148b6afe-820ea160e2.zip/node_modules/debug/",
           "packageDependencies": [
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"],
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"],
             ["ms", "npm:2.1.2"],
             ["supports-color", null]
           ],
@@ -2508,7 +2509,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["http-proxy-agent", "npm:4.0.1"],
             ["@tootallnate/once", "npm:1.1.2"],
             ["agent-base", "npm:6.0.2"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"]
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"]
           ],
           "linkType": "HARD",
         }]
@@ -2528,7 +2529,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["https-proxy-agent", "npm:5.0.0"],
             ["agent-base", "npm:6.0.2"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"]
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"]
           ],
           "linkType": "HARD",
         }]
@@ -3035,7 +3036,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["knex", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:0.95.11"],
             ["colorette", "npm:1.2.1"],
             ["commander", "npm:7.2.0"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"],
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"],
             ["escalade", "npm:3.1.1"],
             ["esm", "npm:3.2.25"],
             ["getopts", "npm:2.2.5"],
@@ -3082,7 +3083,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next-i18next", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:8.9.0"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:17.0.2"],
-            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"]
+            ["react-dom", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:17.0.2"],
+            ["superjson", "npm:1.8.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -3123,6 +3125,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",
           "packageDependencies": [
             ["lodash", "npm:4.17.21"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lodash.clonedeep", [
+        ["npm:4.5.0", {
+          "packageLocation": "./.yarn/cache/lodash.clonedeep-npm-4.5.0-fbc3cda4e5-92c46f094b.zip/node_modules/lodash.clonedeep/",
+          "packageDependencies": [
+            ["lodash.clonedeep", "npm:4.5.0"]
           ],
           "linkType": "HARD",
         }]
@@ -4566,7 +4577,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["socks-proxy-agent", "npm:6.1.0"],
             ["agent-base", "npm:6.0.2"],
-            ["debug", "virtual:82b557ac7008eacde191715823d72228fb07b92b812985be76715f96ffd8db49130c2080a2589a12342bf480bc7d906344d14fb4652b94aa6e32187b988d30fb#npm:4.3.2"],
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"],
             ["socks", "npm:2.6.1"]
           ],
           "linkType": "HARD",
@@ -4866,6 +4877,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "@types/stylis",
             "stylis"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["superjson", [
+        ["npm:1.8.0", {
+          "packageLocation": "./.yarn/cache/superjson-npm-1.8.0-136d50343d-f1b333354a.zip/node_modules/superjson/",
+          "packageDependencies": [
+            ["superjson", "npm:1.8.0"],
+            ["debug", "virtual:136d50343d5d745fc79073b72b8893c11027c50777acad2426f10c7584b5c69c9b159c952337031f18a764cc94db67df4663ef09903c1ff415da0ff97a1441d2#npm:4.3.2"],
+            ["lodash.clonedeep", "npm:4.5.0"]
           ],
           "linkType": "HARD",
         }]
