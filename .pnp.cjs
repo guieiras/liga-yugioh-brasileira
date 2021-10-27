@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.5.0"],
             ["@emotion/server", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.4.0"],
             ["@emotion/styled", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.3.0"],
+            ["@mui/icons-material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["@mui/material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["@mui/system", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["clsx", "npm:1.1.1"],
@@ -456,6 +457,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react-dom",
             "@types/react",
             "react-dom",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@mui/icons-material", [
+        ["npm:5.0.5", {
+          "packageLocation": "./.yarn/cache/@mui-icons-material-npm-5.0.5-ff5981165f-85e7304ab8.zip/node_modules/@mui/icons-material/",
+          "packageDependencies": [
+            ["@mui/icons-material", "npm:5.0.5"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5", {
+          "packageLocation": "./.yarn/__virtual__/@mui-icons-material-virtual-0149781209/0/cache/@mui-icons-material-npm-5.0.5-ff5981165f-85e7304ab8.zip/node_modules/@mui/icons-material/",
+          "packageDependencies": [
+            ["@mui/icons-material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
+            ["@babel/runtime", "npm:7.15.4"],
+            ["@mui/material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
+            ["@types/mui__material", null],
+            ["@types/react", null],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@mui/material",
+            "@types/mui__material",
+            "@types/react",
             "react"
           ],
           "linkType": "HARD",
@@ -2853,6 +2881,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.5.0"],
             ["@emotion/server", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.4.0"],
             ["@emotion/styled", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:11.3.0"],
+            ["@mui/icons-material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["@mui/material", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["@mui/system", "virtual:c8248a1fb191162345a10380d086e9495c39bf4be6c372422ef769039e9aceb7e7f339db95135fe14e7deb4530cd4082300757dbd60e6159c53e3198c7648644#npm:5.0.5"],
             ["clsx", "npm:1.1.1"],
