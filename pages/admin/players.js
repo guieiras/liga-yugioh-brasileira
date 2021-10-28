@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,12 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { deserialize, serialize } from 'superjson';
-
 import AdminLayout from '../../src/components/layouts/admin';
+import states from '../../src/components/states';
 import { getPlayers } from '../../src/repositories/players';
 import useLocalization from '../../src/useLocalization';
 
@@ -44,7 +45,10 @@ export default function Index({ players: json }) {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{player.name}</TableCell>
-                <TableCell>{player.state}</TableCell>
+                <TableCell>
+                  <Image src={`/img/flags/${player.state.toUpperCase()}.png`} height={17} width={26} />
+                  <span style={{ marginLeft: 5 }}>{states[player.state]}</span>
+                </TableCell>
                 <TableCell>{player.konami_id}</TableCell>
                 <TableCell>{l(player.created_at)}</TableCell>
                 <TableCell>
