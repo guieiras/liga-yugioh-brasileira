@@ -17,3 +17,10 @@ export async function createPlayer({ name, state, konamiId }) {
 
   return { id, ...player };
 }
+
+export async function deletePlayer(playerId) {
+  const rows = await db('players').where('id', playerId).del()
+
+  if (rows === 0) { throw new Error('Not Found')};
+  return true;
+}
