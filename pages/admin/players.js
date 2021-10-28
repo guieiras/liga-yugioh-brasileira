@@ -8,10 +8,19 @@ import AdminLayout from '../../src/components/layouts/admin';
 import AdminTable from '../../src/components/admin/players/table';
 import AdminForm from '../../src/components/admin/players/form';
 import { getPlayers } from '../../src/repositories/players';
+import { post } from '../../src/requests/client';
 
 export default function Index({ players: json }) {
   const { t } = useTranslation()
-  const players = deserialize(json)
+  const [players, setPlayers] = React.useState(deserialize(json))
+
+  async function savePlayer(player) {
+    return post('admin/players', player)
+      .then((player) => {
+        setPlayers([...players, { ...player, created_at: Date.parse(player.created_at) }]);
+      });
+  }
+
 
   return (
     <AdminLayout index='players'>
@@ -25,7 +34,7 @@ export default function Index({ players: json }) {
         {t('admin.players.form.title')}
       </Typography>
 
-      <AdminForm sx={{ mt: 4 }} />
+      <AdminForm sx={{ mt: 4 }} onSubmit={savePlayer} />
     </AdminLayout>
   );
 }

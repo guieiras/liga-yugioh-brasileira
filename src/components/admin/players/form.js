@@ -24,7 +24,11 @@ export default function AdminForm({ onSubmit, ...props }) {
 
   function submit () {
     if (onSubmit && name && state && konamiId) {
-      onSubmit({ name, state, konamiId })
+      onSubmit({ name, state, konamiId }).then(() => {
+        setName('');
+        setState('');
+        setKonamiId('');
+      });
     }
   }
 
