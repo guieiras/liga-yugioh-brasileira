@@ -1,5 +1,12 @@
 {
   "title": "LYB - Yu-Gi-Oh Brazilian League",
   "admin.drawer.title": "Navigation menu",
-  "admin.drawer.players": "Players"
+  "admin.drawer.players": "Players",
+  "admin.players": "Players",
+  "admin.players.title": "Players",
+  "admin.players.table.name": "Name",
+  "admin.players.table.state": "State",
+  "admin.players.table.konamiId": "Konami ID",
+  "admin.players.table.createdAt": "Created at",
+  "admin.players.table.actions": "Actions"
 }
