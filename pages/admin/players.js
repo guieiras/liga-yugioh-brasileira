@@ -1,33 +1,32 @@
-import React from 'react';
+import React from 'react'
 
-import Typography from '@mui/material/Typography';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { deserialize, serialize } from 'superjson';
-import AdminLayout from '../../src/components/layouts/admin';
-import AdminPlayersTable from '../../src/components/admin/players/table';
-import AdminPlayersForm from '../../src/components/admin/players/form';
-import { getPlayers } from '../../src/repositories/players';
-import { del, post } from '../../src/requests/client';
+import Typography from '@mui/material/Typography'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { deserialize, serialize } from 'superjson'
+import AdminLayout from '../../src/components/layouts/admin'
+import AdminPlayersTable from '../../src/components/admin/players/table'
+import AdminPlayersForm from '../../src/components/admin/players/form'
+import { getPlayers } from '../../src/repositories/players'
+import { del, post } from '../../src/requests/client'
 
-export default function Index({ players: json }) {
+export default function Index ({ players: json }) {
   const { t } = useTranslation()
   const [players, setPlayers] = React.useState(deserialize(json))
 
-  async function savePlayer(player) {
+  async function savePlayer (player) {
     return post('admin/players', player)
       .then((player) => {
-        setPlayers([...players, { ...player, created_at: Date.parse(player.created_at) }]);
-      });
+        setPlayers([...players, { ...player, created_at: Date.parse(player.created_at) }])
+      })
   }
 
-  async function deletePlayer(playerId) {
+  async function deletePlayer (playerId) {
     return del(`admin/players/${playerId}`)
       .then(() => {
-        setPlayers(players.filter((player) => player.id !== playerId));
-      });
+        setPlayers(players.filter((player) => player.id !== playerId))
+      })
   }
-
 
   return (
     <AdminLayout index='players'>
@@ -43,10 +42,10 @@ export default function Index({ players: json }) {
 
       <AdminPlayersForm sx={{ mt: 4 }} onSubmit={savePlayer} />
     </AdminLayout>
-  );
+  )
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps ({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale)),

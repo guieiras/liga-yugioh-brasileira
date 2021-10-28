@@ -6,4 +6,4 @@ module.exports = {
     defaultLocale: 'pt',
     localePath: path.resolve('./config/locales')
   }
-};
+}

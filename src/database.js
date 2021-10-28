@@ -1,6 +1,6 @@
-import Knex from 'knex';
+import Knex from 'knex'
 
-function createConnection() {
+function createConnection () {
   return Knex({
     client: 'mysql2',
     connection: {
@@ -9,19 +9,19 @@ function createConnection() {
       user: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD
     }
-  });
+  })
 }
 
-let database;
+let database
 
 if (process.env.NODE_ENV === 'production') {
   database = createConnection()
 } else {
   if (!global.database) {
-    global.database = createConnection();
+    global.database = createConnection()
   }
 
-  database = global.database;
+  database = global.database
 }
 
-export default database;
+export default database

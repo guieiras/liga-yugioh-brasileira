@@ -1,34 +1,34 @@
-import React from 'react';
+import React from 'react'
 
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import { useTranslation } from 'next-i18next';
-import states from '../../states';
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Button from '@mui/material/Button'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
+import { useTranslation } from 'next-i18next'
+import states from '../../states'
 
-export default function AdminPlayersForm({ onSubmit, ...props }) {
-  const { t } = useTranslation();
+export default function AdminPlayersForm ({ onSubmit, ...props }) {
+  const { t } = useTranslation()
 
-  const [name, setName] = React.useState('');
-  const [state, setState] = React.useState('');
-  const [konamiId, setKonamiId] = React.useState('');
+  const [name, setName] = React.useState('')
+  const [state, setState] = React.useState('')
+  const [konamiId, setKonamiId] = React.useState('')
 
   function handleKonamiId (input) {
-    setKonamiId(input.replace(/[^0-9]/g, ''));
+    setKonamiId(input.replace(/[^0-9]/g, ''))
   }
 
   function submit () {
     if (onSubmit && name && state && konamiId) {
       onSubmit({ name, state, konamiId }).then(() => {
-        setName('');
-        setState('');
-        setKonamiId('');
-      });
+        setName('')
+        setState('')
+        setKonamiId('')
+      })
     }
   }
 
@@ -77,5 +77,5 @@ export default function AdminPlayersForm({ onSubmit, ...props }) {
         </Grid>
       </Grid>
     </Paper>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import db from '../database';
+import db from '../database'
 
-export async function getPlayers() {
-  return db('players').select('*').orderBy('name');
+export async function getPlayers () {
+  return db('players').select('*').orderBy('name')
 }
 
-export async function createPlayer({ name, state, konamiId }) {
+export async function createPlayer ({ name, state, konamiId }) {
   const player = {
     name,
     state,
@@ -13,14 +13,14 @@ export async function createPlayer({ name, state, konamiId }) {
     updated_at: new Date()
   }
 
-  const [id] = await db('players').insert(player);
+  const [id] = await db('players').insert(player)
 
-  return { id, ...player };
+  return { id, ...player }
 }
 
-export async function deletePlayer(playerId) {
+export async function deletePlayer (playerId) {
   const rows = await db('players').where('id', playerId).del()
 
-  if (rows === 0) { throw new Error('Not Found')};
-  return true;
+  if (rows === 0) { throw new Error('Not Found') };
+  return true
 }

@@ -28,4 +28,4 @@ const states = {
   to: 'Tocantins'
 }
 
-export default states;
+export default states

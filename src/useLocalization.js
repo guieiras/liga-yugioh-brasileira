@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-export default function useLocalization() {
+export default function useLocalization () {
   const { locale } = useRouter()
   const l = (date, format) => {
     if (!date) return null
@@ -9,7 +9,7 @@ export default function useLocalization() {
       long: { dateStyle: 'full', timeStyle: 'long' },
       date: { dateStyle: 'full' }
     }[format] || {
-      year: 'numeric', month: 'long', day: 'numeric',
+      year: 'numeric', month: 'long', day: 'numeric'
     }
 
     return new Intl.DateTimeFormat(locale, options).format(date)

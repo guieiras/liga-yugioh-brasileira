@@ -1,19 +1,19 @@
-import React from 'react';
-import Head from 'next/head';
-import AdminDrawer from './admin/drawer';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { useTranslation } from 'next-i18next';
+import React from 'react'
+import Head from 'next/head'
+import AdminDrawer from './admin/drawer'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import AppBar from '@mui/material/AppBar'
+import CssBaseline from '@mui/material/CssBaseline'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from '@mui/material/styles'
+import { useTranslation } from 'next-i18next'
 
-export default function AdminLayout({ children, index }) {
+export default function AdminLayout ({ children, index }) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = React.useState(false)
   const theme = useTheme()

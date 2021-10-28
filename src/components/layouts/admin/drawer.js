@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import PeopleIcon from '@mui/icons-material/People';
-import { useTranslation } from 'next-i18next';
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import Toolbar from '@mui/material/Toolbar'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListSubheader from '@mui/material/ListSubheader'
+import PeopleIcon from '@mui/icons-material/People'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -30,7 +30,7 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
     sx={{
       width: drawerWidth,
       flexShrink: 0,
-      [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' }
+      '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' }
     }}
   >
     <Toolbar />
