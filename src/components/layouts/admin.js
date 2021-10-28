@@ -43,7 +43,7 @@ export default function AdminLayout({ children, index }) {
         </Toolbar>
       </AppBar>
       <AdminDrawer open={isOpen} onClose={() => setIsOpen(false)} isDesktop={isDesktop} />
-      <Container sx={{ marginTop: 2 }}>
+      <Container sx={{ mt: 3, mb: 3 }}>
         <Toolbar />
         { children }
       </Container>

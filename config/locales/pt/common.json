@@ -3,10 +3,11 @@
   "admin.drawer.title": "Menu de navegação",
   "admin.drawer.players": "Jogadores",
   "admin.players": "Jogadores",
-  "admin.players.title": "Jogadores",
-  "admin.players.table.name": "Nome",
-  "admin.players.table.state": "Estado",
-  "admin.players.table.konamiId": "Konami ID",
-  "admin.players.table.createdAt": "Criado em",
-  "admin.players.table.actions": "Ações"
+  "admin.players.name": "Nome",
+  "admin.players.state": "Estado",
+  "admin.players.konamiId": "Konami ID",
+  "admin.players.createdAt": "Criado em",
+  "admin.players.actions": "Ações",
+  "admin.players.form.title": "Adicionar jogador",
+  "admin.players.submit": "Salvar"
 }

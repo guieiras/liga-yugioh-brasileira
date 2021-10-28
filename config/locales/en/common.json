@@ -3,10 +3,11 @@
   "admin.drawer.title": "Navigation menu",
   "admin.drawer.players": "Players",
   "admin.players": "Players",
-  "admin.players.title": "Players",
-  "admin.players.table.name": "Name",
-  "admin.players.table.state": "State",
-  "admin.players.table.konamiId": "Konami ID",
-  "admin.players.table.createdAt": "Created at",
-  "admin.players.table.actions": "Actions"
+  "admin.players.name": "Name",
+  "admin.players.state": "State",
+  "admin.players.konamiId": "Konami ID",
+  "admin.players.createdAt": "Created at",
+  "admin.players.actions": "Actions",
+  "admin.players.form.title": "New player",
+  "admin.players.submit": "Save"
 }

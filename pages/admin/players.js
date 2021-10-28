@@ -1,64 +1,31 @@
 import React from 'react';
 
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { deserialize, serialize } from 'superjson';
 import AdminLayout from '../../src/components/layouts/admin';
-import states from '../../src/components/states';
+import AdminTable from '../../src/components/admin/players/table';
+import AdminForm from '../../src/components/admin/players/form';
 import { getPlayers } from '../../src/repositories/players';
-import useLocalization from '../../src/useLocalization';
 
 export default function Index({ players: json }) {
   const { t } = useTranslation()
-  const { l } = useLocalization()
   const players = deserialize(json)
 
   return (
     <AdminLayout index='players'>
       <Typography variant="h5" component="h2">
-        {t('admin.players.title')}
+        {t('admin.players')}
       </Typography>
-      <TableContainer component={Paper} sx={{ marginTop: 2 }}>
-        <Table aria-label={t('admin.players.table.title')}>
-          <TableHead>
-            <TableRow>
-              <TableCell>{t('admin.players.table.name')}</TableCell>
-              <TableCell>{t('admin.players.table.state')}</TableCell>
-              <TableCell>{t('admin.players.table.konamiId')}</TableCell>
-              <TableCell>{t('admin.players.table.createdAt')}</TableCell>
-              <TableCell>{t('admin.players.table.actions')}</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {players.map((player) => (
-              <TableRow
-                key={player.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">{player.name}</TableCell>
-                <TableCell>
-                  <Image src={`/img/flags/${player.state.toUpperCase()}.png`} height={17} width={26} />
-                  <span style={{ marginLeft: 5 }}>{states[player.state]}</span>
-                </TableCell>
-                <TableCell>{player.konami_id}</TableCell>
-                <TableCell>{l(player.created_at)}</TableCell>
-                <TableCell>
 
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <AdminTable players={players} sx={{ mt: 2 }} />
+
+      <Typography variant="h6" component="h3" mt={3}>
+        {t('admin.players.form.title')}
+      </Typography>
+
+      <AdminForm sx={{ mt: 4 }} />
     </AdminLayout>
   );
 }
