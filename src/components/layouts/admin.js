@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import AdminDrawer from './admin/drawer';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
@@ -42,10 +43,10 @@ export default function AdminLayout({ children, index }) {
         </Toolbar>
       </AppBar>
       <AdminDrawer open={isOpen} onClose={() => setIsOpen(false)} isDesktop={isDesktop} />
-      <Box p={3}>
+      <Container sx={{ marginTop: 2 }}>
         <Toolbar />
         { children }
-      </Box>
+      </Container>
     </Box>
   )
 }
