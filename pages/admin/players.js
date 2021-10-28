@@ -5,10 +5,10 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { deserialize, serialize } from 'superjson';
 import AdminLayout from '../../src/components/layouts/admin';
-import AdminTable from '../../src/components/admin/players/table';
-import AdminForm from '../../src/components/admin/players/form';
+import AdminPlayersTable from '../../src/components/admin/players/table';
+import AdminPlayersForm from '../../src/components/admin/players/form';
 import { getPlayers } from '../../src/repositories/players';
-import { post } from '../../src/requests/client';
+import { del, post } from '../../src/requests/client';
 
 export default function Index({ players: json }) {
   const { t } = useTranslation()
@@ -21,6 +21,13 @@ export default function Index({ players: json }) {
       });
   }
 
+  async function deletePlayer(playerId) {
+    return del(`admin/players/${playerId}`)
+      .then(() => {
+        setPlayers(players.filter((player) => player.id !== playerId));
+      });
+  }
+
 
   return (
     <AdminLayout index='players'>
@@ -28,7 +35,7 @@ export default function Index({ players: json }) {
         {t('admin.players')}
       </Typography>
 
-      <AdminPlayersTable players={players} sx={{ mt: 2 }} />
+      <AdminPlayersTable players={players} sx={{ mt: 2 }} onDelete={deletePlayer} />
 
       <Typography variant="h6" component="h3" mt={3}>
         {t('admin.players.form.title')}

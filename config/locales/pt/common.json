@@ -9,5 +9,6 @@
   "admin.players.createdAt": "Criado em",
   "admin.players.actions": "Ações",
   "admin.players.form.title": "Adicionar jogador",
-  "admin.players.submit": "Salvar"
+  "admin.players.submit": "Salvar",
+  "admin.players.delete": "Remover jogador"
 }

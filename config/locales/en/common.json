@@ -9,5 +9,6 @@
   "admin.players.createdAt": "Created at",
   "admin.players.actions": "Actions",
   "admin.players.form.title": "New player",
-  "admin.players.submit": "Save"
+  "admin.players.submit": "Save",
+  "admin.players.delete": "Delete player"
 }
