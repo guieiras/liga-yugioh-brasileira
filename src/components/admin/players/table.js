@@ -14,7 +14,7 @@ import { useTranslation } from 'next-i18next';
 import states from '../../states';
 import useLocalization from '../../../useLocalization';
 
-export default function AdminTable({ players, ...props }) {
+export default function AdminPlayersTable({ players, ...props }) {
   const { t } = useTranslation()
   const { l } = useLocalization()
 

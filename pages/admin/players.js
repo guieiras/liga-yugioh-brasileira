@@ -28,13 +28,13 @@ export default function Index({ players: json }) {
         {t('admin.players')}
       </Typography>
 
-      <AdminTable players={players} sx={{ mt: 2 }} />
+      <AdminPlayersTable players={players} sx={{ mt: 2 }} />
 
       <Typography variant="h6" component="h3" mt={3}>
         {t('admin.players.form.title')}
       </Typography>
 
-      <AdminForm sx={{ mt: 4 }} onSubmit={savePlayer} />
+      <AdminPlayersForm sx={{ mt: 4 }} onSubmit={savePlayer} />
     </AdminLayout>
   );
 }

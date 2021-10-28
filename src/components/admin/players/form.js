@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { useTranslation } from 'next-i18next';
 import states from '../../states';
 
-export default function AdminForm({ onSubmit, ...props }) {
+export default function AdminPlayersForm({ onSubmit, ...props }) {
   const { t } = useTranslation();
 
   const [name, setName] = React.useState('');
