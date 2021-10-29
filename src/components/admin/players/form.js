@@ -22,7 +22,9 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
     setKonamiId(input.replace(/[^0-9]/g, ''))
   }
 
-  function submit () {
+  function submit (e) {
+    e.preventDefault()
+
     if (onSubmit && name && state && konamiId) {
       onSubmit({ name, state, konamiId }).then(() => {
         setName('')
@@ -33,7 +35,7 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
   }
 
   return (
-    <Paper component="form" noValidate autoComplete="off" {...props}>
+    <Paper component="form" noValidate autoComplete="off" onSubmit={submit} {...props}>
       <Grid container spacing={2} p={2}>
         <Grid item xs={12} md={8}>
           <TextField
@@ -71,7 +73,7 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
           />
         </Grid>
         <Grid item xs={12} sx={{ textAlign: 'right' }}>
-          <Button onClick={submit}>
+          <Button type='submit'>
             {t('admin.players.submit')}
           </Button>
         </Grid>
