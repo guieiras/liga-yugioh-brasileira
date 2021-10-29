@@ -7,6 +7,7 @@ export default function useLocalization () {
     const options = {
       short: {},
       long: { dateStyle: 'full', timeStyle: 'long' },
+      month: { month: 'long', year: 'numeric' },
       date: { dateStyle: 'full' }
     }[format] || {
       year: 'numeric', month: 'long', day: 'numeric'
