@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { deserialize, serialize } from 'superjson'
 import AdminLayout from '../../src/components/layouts/admin'
+import AdminSeasonsTable from '../../src/components/admin/seasons/table'
 import { getSeasons } from '../../src/repositories/seasons'
 import { del, post } from '../../src/requests/client'
 
@@ -31,6 +32,13 @@ export default function SeasonsIndex ({ seasons: json }) {
       <Typography variant="h5" component="h2">
         {t('admin.seasons')}
       </Typography>
+
+      <AdminSeasonsTable
+        seasons={seasons}
+        sx={{ mt: 2 }}
+        onDelete={deleteSeason}
+        onCreate={saveSeason}
+      />
     </AdminLayout>
   )
 }

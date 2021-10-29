@@ -14,6 +14,9 @@
   "admin.players.delete": "Remover jogador",
   "admin.seasons": "Temporadas",
   "admin.seasons.name": "Temporada",
-  "admin.seasons.form.createdAt": "Criado em",
-  "admin.seasons.delete": "Remover temporada"
+  "admin.seasons.createdAt": "Criado em",
+  "admin.seasons.actions": "Ações",
+  "admin.seasons.form": "Nova temporada",
+  "admin.seasons.delete": "Remover temporada",
+  "admin.seasons.submit": "Adicionar"
 }
