@@ -1,6 +1,7 @@
 {
   "title": "LYB - Yu-Gi-Oh Brazilian League",
   "admin.drawer.title": "Navigation menu",
+  "admin.drawer.series": "Series",
   "admin.drawer.players": "Players",
   "admin.drawer.seasons": "Seasons",
   "admin.players": "Players",
@@ -18,5 +19,6 @@
   "admin.seasons.actions": "Actions",
   "admin.seasons.form": "New season",
   "admin.seasons.delete": "Delete season",
-  "admin.seasons.submit": "Add"
+  "admin.seasons.submit": "Add",
+  "admin.series": "Series"
 }
