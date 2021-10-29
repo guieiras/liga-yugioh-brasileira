@@ -11,6 +11,8 @@ import TextField from '@mui/material/TextField'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslation } from 'next-i18next'
@@ -19,6 +21,9 @@ import useLocalization from '../../../useLocalization'
 export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...props }) {
   const { t } = useTranslation()
   const { l } = useLocalization()
+
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
   const [name, setName] = React.useState('')
 
   function submit (e) {
@@ -68,7 +73,7 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...pro
             <TableCell colSpan={3}>
               <form onSubmit={submit}>
                 <Grid container spacing={2} alignItems="center">
-                  <Grid item xs={10}>
+                  <Grid item xs={10} >
                     <TextField
                       fullWidth
                       onChange={e => setName(e.target.value)}
@@ -78,9 +83,19 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...pro
                     />
                   </Grid>
                   <Grid item xs={2}>
-                    <Button startIcon={<AddIcon />} type='submit'>
-                      {t('admin.seasons.submit')}
-                    </Button>
+                    {
+                      isDesktop
+                        ? (
+                        <Button startIcon={<AddIcon />} type='submit'>
+                          {t('admin.seasons.submit')}
+                        </Button>
+                          )
+                        : (
+                        <IconButton aria-label={t('admin.seasons.submit')} title={t('admin.seasons.submit')}>
+                          <AddIcon />
+                        </IconButton>
+                          )
+                    }
                   </Grid>
                 </Grid>
               </form>
