@@ -2,6 +2,7 @@
   "title": "LYB - Liga Yu-Gi-Oh Brasileira",
   "admin.drawer.title": "Menu de navegação",
   "admin.drawer.players": "Jogadores",
+  "admin.drawer.seasons": "Temporadas",
   "admin.players": "Jogadores",
   "admin.players.name": "Nome",
   "admin.players.state": "Estado",
@@ -10,5 +11,9 @@
   "admin.players.actions": "Ações",
   "admin.players.form.title": "Adicionar jogador",
   "admin.players.submit": "Salvar",
-  "admin.players.delete": "Remover jogador"
+  "admin.players.delete": "Remover jogador",
+  "admin.seasons": "Temporadas",
+  "admin.seasons.name": "Temporada",
+  "admin.seasons.form.createdAt": "Criado em",
+  "admin.seasons.delete": "Remover temporada"
 }

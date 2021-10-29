@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 import PeopleIcon from '@mui/icons-material/People'
+import TodayIcon from '@mui/icons-material/Today'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -16,7 +17,8 @@ import Link from 'next/link'
 const drawerWidth = 240
 
 const items = [
-  { name: 'players', icon: PeopleIcon, route: '/admin/players' }
+  { name: 'players', icon: PeopleIcon, route: '/admin/players' },
+  { name: 'seasons', icon: TodayIcon, route: '/admin/seasons' }
 ]
 
 export default function AdminDrawer ({ isDesktop, open, onClose }) {
