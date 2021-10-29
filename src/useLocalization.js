@@ -16,5 +16,5 @@ export default function useLocalization () {
     return new Intl.DateTimeFormat(locale, options).format(date)
   }
 
-  return { l }
+  return { l, locale }
 }
