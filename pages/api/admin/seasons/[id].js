@@ -1,10 +1,11 @@
+import withAuthentication from '../../../../src/middlewares/withAuthentication'
 import { deleteSeason } from '../../../../src/repositories/seasons'
 
-export default function handler (req, res) {
+export default withAuthentication((req, res) => {
   if (req.method === 'DELETE') { return destroy(req, res) }
 
   return res.status(404).send({ error: 'Route not found' })
-}
+})
 
 async function destroy (req, res) {
   try {
