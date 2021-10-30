@@ -4,6 +4,12 @@ export async function getSeasons () {
   return db('seasons').select('*').orderBy('created_at')
 }
 
+export async function getSeason (seasonId) {
+  const seasons = await db('seasons').select('*').where('id', seasonId).limit(1)
+
+  return seasons[0]
+}
+
 export async function createSeason ({ name }) {
   const season = {
     name,
