@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { useTranslation } from 'next-i18next'
 
-export default function AdminLayout ({ children, index }) {
+export default function AdminLayout ({ children, index, title }) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = React.useState(false)
   const theme = useTheme()
@@ -22,7 +22,7 @@ export default function AdminLayout ({ children, index }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Head>
-        <title>{t(`admin.drawer.${index}`)} | {t('title')}</title>
+        <title>{title || t(`admin.drawer.${index}`)} | {t('title')}</title>
       </Head>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -37,7 +37,7 @@ export default function AdminLayout ({ children, index }) {
           >
             <MenuIcon />
           </IconButton> }
-          <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             { t('title') }
           </Typography>
         </Toolbar>

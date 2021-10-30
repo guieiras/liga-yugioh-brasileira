@@ -15,7 +15,7 @@ export default function SeriesIndex ({ series: json }) {
 
   return (
     <AdminLayout index='series' session={session}>
-      <Typography variant="h5" component="h2">
+      <Typography variant="h5" component="h1">
         { t('admin.series') }
       </Typography>
 
