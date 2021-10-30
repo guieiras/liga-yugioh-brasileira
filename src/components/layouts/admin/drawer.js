@@ -2,6 +2,7 @@ import React from 'react'
 
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Drawer from '@mui/material/Drawer'
@@ -12,13 +13,15 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 import Typography from '@mui/material/Typography'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import PeopleIcon from '@mui/icons-material/People'
 import ShieldIcon from '@mui/icons-material/Shield'
 import TodayIcon from '@mui/icons-material/Today'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
+import { logout } from '../../../requests/auth0'
 
 const drawerWidth = 240
 
@@ -27,6 +30,11 @@ const items = [
   { name: 'seasons', icon: TodayIcon, route: '/admin/seasons' },
   { name: 'series', icon: ShieldIcon, route: '/admin/series' }
 ]
+
+async function exit () {
+  await signOut({ redirect: false })
+  logout('/admin/sign_in')
+}
 
 export default function AdminDrawer ({ isDesktop, open, onClose }) {
   const { t } = useTranslation()
@@ -50,6 +58,9 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
           <Avatar alt={t('admin.drawer.photoAlt')} src={session?.user?.image} />
           <Box sx={{ ml: 1 }}>
             <Typography variant="button" component="p">{session.user.name}</Typography>
+            <Button size='small' startIcon={<ExitToAppIcon />} variant='outlined' sx={{ mt: 1 }} onClick={exit}>
+              { t('admin.drawer.signOut') }
+            </Button>
           </Box>
         </CardContent>
       </Card> }
