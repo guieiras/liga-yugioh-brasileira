@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Typography from '@mui/material/Typography'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useSession } from 'next-auth/react'
@@ -12,6 +13,7 @@ import { getSeasons } from '../../src/repositories/seasons'
 import { del, post } from '../../src/requests/client'
 
 export default function SeasonsIndex ({ seasons: json }) {
+  const router = useRouter()
   const { t } = useTranslation()
   const { data: session } = useSession()
   const [seasons, setSeasons] = React.useState(deserialize(json))
@@ -21,6 +23,10 @@ export default function SeasonsIndex ({ seasons: json }) {
       .then((season) => {
         setSeasons([...seasons, { ...season, created_at: Date.parse(season.created_at) }])
       })
+  }
+
+  async function showSeason (seasonId) {
+    router.push(`/admin/seasons/${seasonId}`)
   }
 
   async function deleteSeason (seasonId) {
@@ -41,6 +47,7 @@ export default function SeasonsIndex ({ seasons: json }) {
         sx={{ mt: 2 }}
         onDelete={deleteSeason}
         onCreate={saveSeason}
+        onShow={showSeason}
       />
     </AdminLayout>
   )

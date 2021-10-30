@@ -14,11 +14,12 @@ import TableRow from '@mui/material/TableRow'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import AddIcon from '@mui/icons-material/Add'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslation } from 'next-i18next'
 import useLocalization from '../../../useLocalization'
 
-export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...props }) {
+export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons, ...props }) {
   const { t } = useTranslation()
   const { l } = useLocalization()
 
@@ -32,6 +33,10 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...pro
     if (name) {
       onCreate({ name }).then(() => { setName('') })
     }
+  }
+
+  function handleShow () {
+    onShow && onShow(this.id)
   }
 
   function handleDelete () {
@@ -57,6 +62,14 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, seasons, ...pro
               <TableCell component="th" scope="row">{season.name}</TableCell>
               <TableCell>{l(season.created_at, 'month')}</TableCell>
               <TableCell>
+                <IconButton
+                  aria-label={t('admin.seasons.show')}
+                  component="span"
+                  onClick={handleShow.bind(season)}
+                  title={t('admin.seasons.show')}
+                >
+                  <VisibilityIcon />
+                </IconButton>
                 <IconButton
                   aria-label={t('admin.seasons.delete')}
                   color="error"
