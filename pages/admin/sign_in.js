@@ -1,13 +1,21 @@
 import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 export default function AdminSignIn () {
   const { data: session, status } = useSession()
   const loading = status === 'loading'
+  const { push } = useRouter()
 
   const login = () => {
     signIn('auth0')
+
+    return null
+  }
+
+  const redirectToDashboard = () => {
+    push('/admin/players')
 
     return null
   }
@@ -26,4 +34,6 @@ export default function AdminSignIn () {
         </div>
     </Container>
   }
+
+  if (session) { return redirectToDashboard() }
 }

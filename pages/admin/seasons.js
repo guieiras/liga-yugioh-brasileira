@@ -3,14 +3,17 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useSession } from 'next-auth/react'
 import { deserialize, serialize } from 'superjson'
 import AdminLayout from '../../src/components/layouts/admin'
 import AdminSeasonsTable from '../../src/components/admin/seasons/table'
+import { authenticate } from '../../src/middlewares/session'
 import { getSeasons } from '../../src/repositories/seasons'
 import { del, post } from '../../src/requests/client'
 
 export default function SeasonsIndex ({ seasons: json }) {
   const { t } = useTranslation()
+  const { data: session } = useSession()
   const [seasons, setSeasons] = React.useState(deserialize(json))
 
   async function saveSeason (season) {
@@ -28,7 +31,7 @@ export default function SeasonsIndex ({ seasons: json }) {
   }
 
   return (
-    <AdminLayout index='seasons'>
+    <AdminLayout index='seasons' session={session}>
       <Typography variant="h5" component="h2">
         {t('admin.seasons')}
       </Typography>
@@ -43,11 +46,13 @@ export default function SeasonsIndex ({ seasons: json }) {
   )
 }
 
-export async function getServerSideProps ({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale)),
-      seasons: serialize(await getSeasons())
+export async function getServerSideProps (context) {
+  return authenticate(async ({ locale }) => {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale)),
+        seasons: serialize(await getSeasons())
+      }
     }
-  }
+  })(context)
 }

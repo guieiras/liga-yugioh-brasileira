@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Typography from '@mui/material/Typography'
+import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { deserialize, serialize } from 'superjson'
@@ -9,8 +10,10 @@ import AdminPlayersTable from '../../src/components/admin/players/table'
 import AdminPlayersForm from '../../src/components/admin/players/form'
 import { getPlayers } from '../../src/repositories/players'
 import { del, post } from '../../src/requests/client'
+import { authenticate } from '../../src/middlewares/session'
 
 export default function Index ({ players: json }) {
+  const { data: session } = useSession()
   const { t } = useTranslation()
   const [players, setPlayers] = React.useState(deserialize(json))
 
@@ -29,7 +32,7 @@ export default function Index ({ players: json }) {
   }
 
   return (
-    <AdminLayout index='players'>
+    <AdminLayout index='players' session={session}>
       <Typography variant="h5" component="h2">
         {t('admin.players')}
       </Typography>
@@ -45,11 +48,13 @@ export default function Index ({ players: json }) {
   )
 }
 
-export async function getServerSideProps ({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale)),
-      players: serialize(await getPlayers())
+export async function getServerSideProps (context) {
+  return authenticate(async ({ locale }) => {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale)),
+        players: serialize(await getPlayers())
+      }
     }
-  }
+  })(context)
 }
