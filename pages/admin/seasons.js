@@ -13,7 +13,7 @@ import { getSeasons } from '../../src/repositories/seasons'
 import { del, post } from '../../src/requests/client'
 
 export default function SeasonsIndex ({ seasons: json }) {
-  const router = useRouter()
+  const { push } = useRouter()
   const { t } = useTranslation()
   const { data: session } = useSession()
   const [seasons, setSeasons] = React.useState(deserialize(json))
@@ -26,7 +26,7 @@ export default function SeasonsIndex ({ seasons: json }) {
   }
 
   async function showSeason (seasonId) {
-    router.push(`/admin/seasons/${seasonId}`)
+    push(`/admin/seasons/${seasonId}`)
   }
 
   async function deleteSeason (seasonId) {
