@@ -1,6 +1,6 @@
 import db from '../database'
 
-export async function searchMatches({ seasonId, serieId, round  }) {
+export async function searchMatches ({ seasonId, serieId, round }) {
   const query = db('matches')
   if (seasonId) { query.where('season_id', seasonId) }
   if (serieId) { query.where('serie_id', serieId) }
@@ -11,5 +11,5 @@ export async function searchMatches({ seasonId, serieId, round  }) {
     query.where('round', round)
   }
 
-  return query
+  return query.orderBy('table')
 }
