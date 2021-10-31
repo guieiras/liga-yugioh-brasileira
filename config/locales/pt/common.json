@@ -22,5 +22,6 @@
   "admin.seasons.form": "Nova temporada",
   "admin.seasons.delete": "Remover temporada",
   "admin.seasons.submit": "Adicionar",
+  "admin.participations.delete": "Remover",
   "admin.series": "Séries"
 }

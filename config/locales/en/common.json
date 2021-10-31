@@ -22,5 +22,6 @@
   "admin.seasons.form": "New season",
   "admin.seasons.delete": "Delete season",
   "admin.seasons.submit": "Add",
+  "admin.participations.delete": "Delete",
   "admin.series": "Series"
 }
