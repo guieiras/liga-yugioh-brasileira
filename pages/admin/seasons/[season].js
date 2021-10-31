@@ -11,6 +11,8 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import { useRouter } from 'next/router'
 import { deserialize, serialize } from 'superjson'
 import PlayerSearchBar from '../../../src/components/PlayerSearchBar'
 import AdminLayout from '../../../src/components/layouts/admin'
@@ -20,6 +22,7 @@ import { getSeason } from '../../../src/repositories/seasons'
 import { del, get, post } from '../../../src/requests/client'
 
 export default function AdminSeasonShow ({ data: json }) {
+  const { push } = useRouter()
   const { t } = useTranslation()
   const { locale, season, series } = deserialize(json)
   const { data: session } = useSession()
@@ -123,6 +126,15 @@ export default function AdminSeasonShow ({ data: json }) {
               <Typography variant="h6" component="h2" sx={{ color: serie.color }}>
                 {serie[`name_${locale}`]}
               </Typography>
+              {
+                participants[serie.id]?.length && <IconButton
+                  aria-label={t('admin.show.matches')}
+                  onClick={() => { push(`/admin/seasons/${season.id}/series/${serie.id}`) }}
+                  title={t('admin.show.matches')}
+                >
+                  <VisibilityIcon />
+                </IconButton>
+              }
             </Box>
 
             <PlayerSearchBar
@@ -170,7 +182,7 @@ export async function getServerSideProps (context) {
         data: serialize({
           locale,
           series: await getSeries(),
-          season: await getSeason(query.id)
+          season: await getSeason(query.season)
         })
       }
     }
