@@ -14,5 +14,8 @@
       "jsx": true
     },
     "sourceType": "module"
+  },
+  "rules": {
+    "react-hooks/exhaustive-deps": "off"
   }
 }
