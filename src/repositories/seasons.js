@@ -29,8 +29,12 @@ export async function deleteSeason (seasonId) {
   return true
 }
 
-export async function getParticipations (seasonId) {
-  return db('seasons_participations').where('season_id', seasonId)
+export async function getParticipations (seasonId, filters = {}) {
+  const query = db('seasons_participations').where('season_id', seasonId)
+
+  if (filters.serieId) { query.where('serie_id', filters.serieId) }
+
+  return query
 }
 
 export async function createSeasonParticipation ({ playerId, seasonId, serieId }) {
