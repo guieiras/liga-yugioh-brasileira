@@ -1,5 +1,9 @@
-export async function get (path) {
-  return fetch(`/api/${path}`, {
+export async function get (path, query) {
+  let apiPath = `/api/${path}`
+
+  if (query) { apiPath += `?${new URLSearchParams(query)}` }
+
+  return fetch(apiPath, {
     headers: new Headers({
       Accept: 'application/json'
     })
