@@ -73,7 +73,7 @@ export default function AdminSeasonShow ({ data: json }) {
       setSearches({ ...searches, [serieId]: searchTerm })
 
       if (searchTerm.length > 1) {
-        searchPlayers({ name: searchPlayers })
+        searchPlayers({ name: searchTerm })
         setResults({
           [serieId]: Object.values(players).filter((player) => {
             return !Object.values(participants).flat().includes(player.id) &&
