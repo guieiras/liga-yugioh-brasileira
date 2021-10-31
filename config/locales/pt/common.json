@@ -24,5 +24,8 @@
   "admin.seasons.submit": "Adicionar",
   "admin.show.delete": "Remover",
   "admin.show.matches": "Gerenciar partidas",
-  "admin.series": "Séries"
+  "admin.series": "Séries",
+  "currentRound": "Rodada {{round}}",
+  "rounds.new": "Nova rodada",
+  "rounds.none": "Nenhuma rodada foi cadastrada"
 }

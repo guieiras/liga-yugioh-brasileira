@@ -24,5 +24,8 @@
   "admin.seasons.submit": "Add",
   "admin.show.delete": "Delete",
   "admin.show.matches": "Manage matches",
-  "admin.series": "Series"
+  "admin.series": "Series",
+  "currentRound": "Round {{round}}",
+  "rounds.new": "New round",
+  "rounds.none": "No rounds were registered"
 }
