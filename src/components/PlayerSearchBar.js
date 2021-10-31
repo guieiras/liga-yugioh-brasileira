@@ -28,7 +28,7 @@ export default function PlayerSearchBar ({ value, onChange, onSelect, onDelete, 
             </InputAdornment>
           ),
           endAdornment: (
-            onDelete && <InputAdornment position="end">
+            onDelete && value && <InputAdornment position="end">
               <IconButton onClick={onDelete} size="small">
                 <CloseIcon fontSize="inherit" />
               </IconButton>
