@@ -13,3 +13,40 @@ export async function searchMatches ({ seasonId, serieId, round }) {
 
   return query.orderBy('table')
 }
+
+export async function createBatchMatches ({ seasonId, serieId, round, playoff, matches }) {
+  if (!seasonId || !serieId || !matches) { return [] }
+  if ((round && playoff) || (!round && !playoff)) { return [] }
+
+  const fields = {
+    season_id: seasonId,
+    serie_id: serieId,
+    ...(round ? { round } : { playoff })
+  }
+
+  try {
+    const savedResults = []
+
+    await db.transaction(async (transaction) => {
+      await transaction('matches').where(fields).del()
+
+      await Promise.all(matches.map(async (match, i) => {
+        const matchAttributes = {
+          home_player_id: match[0],
+          away_player_id: match[1],
+          ...fields,
+          table: i + 1,
+          created_at: new Date(),
+          updated_at: new Date()
+        }
+        const [id] = await transaction('matches').insert(matchAttributes)
+
+        savedResults.push({ id, ...matchAttributes })
+      }))
+    })
+
+    return savedResults
+  } catch (error) {
+    return []
+  }
+}
