@@ -92,7 +92,7 @@ export default function AdminSeasonShow ({ data: json }) {
       setParticipants({
         ...participants,
         [serieId]: [
-          ...participants[serieId],
+          ...participants[serieId] || [],
           e.id
         ]
       })
