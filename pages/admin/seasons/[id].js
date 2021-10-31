@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useSession } from 'next-auth/react'
+import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
@@ -9,14 +10,14 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
-import DeleteIcon from '@mui/icons-material/Delete'
+import CloseIcon from '@mui/icons-material/Close'
 import { deserialize, serialize } from 'superjson'
+import PlayerSearchBar from '../../../src/components/PlayerSearchBar'
 import AdminLayout from '../../../src/components/layouts/admin'
 import { authenticate } from '../../../src/middlewares/session'
 import { getSeries } from '../../../src/repositories/series'
 import { getSeason } from '../../../src/repositories/seasons'
 import { del, get, post } from '../../../src/requests/client'
-import PlayerSearchBar from '../../../src/components/PlayerSearchBar'
 
 export default function AdminSeasonShow ({ data: json }) {
   const { t } = useTranslation()
@@ -118,9 +119,12 @@ export default function AdminSeasonShow ({ data: json }) {
       {
         series.map((serie) => <Card sx={{ mt: 3 }} key={serie.id}>
           <CardContent>
-            <Typography variant="h6" sx={{ color: serie.color }}>
-              {serie[`name_${locale}`]}
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="h6" component="h2" sx={{ color: serie.color }}>
+                {serie[`name_${locale}`]}
+              </Typography>
+            </Box>
+
             <PlayerSearchBar
               onChange={handleSearch(serie.id)}
               onDelete={handleCleanSearch}
@@ -128,7 +132,6 @@ export default function AdminSeasonShow ({ data: json }) {
               players={results[serie.id]}
               sx={{ mt: 1 }}
               value={searches[serie.id]}
-
             />
             <List>
               {
@@ -137,11 +140,13 @@ export default function AdminSeasonShow ({ data: json }) {
                     key={participant}
                     secondaryAction={
                       <IconButton
-                        aria-label={t('admin.participations.delete')}
+                        aria-label={t('admin.show.delete')}
+                        color="error"
                         edge="end"
                         onClick={handleDelete.bind(season, serie, participant)}
+                        title={t('admin.show.delete')}
                       >
-                        <DeleteIcon />
+                        <CloseIcon />
                       </IconButton>
                     }
                   >
