@@ -32,6 +32,7 @@ exports.up = async function (knex) {
 
     table.integer('round').index()
     table.integer('playoff').index()
+    table.integer('table').notNullable()
     table.integer('winner')
     table.string('prrj_youtube_video_url')
     table.string('dueling_book_replay_url')
