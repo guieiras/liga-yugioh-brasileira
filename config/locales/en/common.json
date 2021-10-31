@@ -27,5 +27,7 @@
   "admin.series": "Series",
   "currentRound": "Round {{round}}",
   "rounds.new": "New round",
-  "rounds.none": "No rounds were registered"
+  "rounds.none": "No rounds were registered",
+  "rounds.blank": "Select an option",
+  "save": "Save"
 }

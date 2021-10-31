@@ -27,5 +27,7 @@
   "admin.series": "Séries",
   "currentRound": "Rodada {{round}}",
   "rounds.new": "Nova rodada",
-  "rounds.none": "Nenhuma rodada foi cadastrada"
+  "rounds.none": "Nenhuma rodada foi cadastrada",
+  "rounds.blank": "Selecione uma opção",
+  "save": "Salvar"
 }
