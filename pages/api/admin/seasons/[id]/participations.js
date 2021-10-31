@@ -9,7 +9,11 @@ export default withAuthentication((req, res) => {
 })
 
 async function index (req, res) {
-  res.send(await getParticipations(req.query.id))
+  const options = {}
+
+  if (req.query.serie_id) { options.serieId = req.query.serie_id }
+
+  res.send(await getParticipations(req.query.id, options))
 }
 
 async function create (req, res) {
