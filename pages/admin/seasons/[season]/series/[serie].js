@@ -53,7 +53,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       if (results.length > 0) { setMatches({ [fetchedRound]: results }) }
       if (!round) {
         setLastRound(fetchedRound || 0)
-        setCurrentRound(fetchedRound)
+        setCurrentRound(fetchedRound || 0)
       }
     }
 
@@ -73,6 +73,7 @@ export default function AdminSeasonMatches ({ data: json }) {
     getRound(editableRound)
     setCurrentRound(editableRound)
     setEditableRound(null)
+    setLastRound(Math.max(lastRound, editableRound))
   }
 
   return (
