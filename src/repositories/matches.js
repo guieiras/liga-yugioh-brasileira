@@ -50,3 +50,15 @@ export async function createBatchMatches ({ seasonId, serieId, round, playoff, m
     return []
   }
 }
+
+export async function updateMatch({ id, winner, analysisUrl, replayUrl }) {
+  const query = db('matches').where('id', id)
+
+  const updateParams = {}
+  if (winner) updateParams.winner = parseInt(winner)
+  if (analysisUrl) updateParams.prrj_youtube_video_url = analysisUrl
+  if (replayUrl) updateParams.dueling_book_replay_url = replayUrl
+
+  const returnedValues = await query.clone().update(updateParams)
+  if (returnedValues > 0) { return (await query.select('*'))[0] }
+}
