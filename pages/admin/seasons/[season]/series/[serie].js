@@ -9,7 +9,7 @@ import AdminLayout from '../../../../../src/components/layouts/admin'
 import { authenticate } from '../../../../../src/middlewares/session'
 import { getSerie } from '../../../../../src/repositories/series'
 import { getSeason } from '../../../../../src/repositories/seasons'
-import { get, post } from '../../../../../src/requests/client'
+import { get, post, put } from '../../../../../src/requests/client'
 import MatchesForm from '../../../../../src/components/matches/form'
 import MatchesPanel from '../../../../../src/components/matches/panel'
 
@@ -17,7 +17,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
   const [loading, setLoading] = React.useState(true)
-  const [matches, setMatches] = React.useState({})
+  const [roundMatches, setMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
   const [lastRound, setLastRound] = React.useState(0)
@@ -58,11 +58,11 @@ export default function AdminSeasonMatches ({ data: json }) {
 
   async function getRound (round, force = false) {
     const roundParam = round || 'last'
-    if (!matches[round] || force) {
+    if (!roundMatches[round] || force) {
       const results = await get('admin/matches/search', { season_id: season.id, serie_id: serie.id, round: roundParam })
       const fetchedRound = results[0]?.round
 
-      if (results.length > 0) { setMatches({ ...matches, [fetchedRound]: results }) }
+      if (results.length > 0) { setMatches({ ...roundMatches, [fetchedRound]: results }) }
       if (!round) {
         setLastRound(fetchedRound || 0)
         setCurrentRound(fetchedRound || 0)
@@ -72,8 +72,24 @@ export default function AdminSeasonMatches ({ data: json }) {
     if (round) { setCurrentRound(round) }
   }
 
-  async function cancelRound () {
+  function cancelRound () {
     setEditableRound(null)
+  }
+
+  async function handleUpdate (match) {
+    const { analysisUrl, replayUrl, winner } = match
+
+    const result = await put(
+      `admin/matches/${match.id}`,
+      { analysis_url: analysisUrl, replay_url: replayUrl, winner }
+    )
+
+    setRoundMatches({
+      ...roundMatches,
+      [result.round]: roundMatches[result.round].map((match) => (
+        match.id === result.id ? result : match
+      ))
+    })
   }
 
   async function saveRound (matches) {
@@ -82,7 +98,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       { season_id: season.id, serie_id: serie.id, round: editableRound, matches }
     )
 
-    setMatches({ ...matches, [editableRound]: undefined })
+    setMatches({ ...roundMatches, [editableRound]: undefined })
     getRound(editableRound, true)
     setCurrentRound(editableRound)
     setEditableRound(null)
@@ -102,17 +118,18 @@ export default function AdminSeasonMatches ({ data: json }) {
           ? <MatchesForm
               onCancel={cancelRound}
               onSubmit={saveRound}
-              matches={matches[editableRound]}
+              matches={roundMatches[editableRound]}
               players={players}
               round={editableRound}
               sx={{ mt: 2 }}
             />
           : <MatchesPanel
               lastRound={lastRound}
-              matches={matches[currentRound] || []}
+              matches={roundMatches[currentRound] || []}
               onBack={handleBack}
               onEdit={handleEdit}
               onForward={handleForward}
+              onGameUpdate={handleUpdate}
               onNewRound={handleNewRound}
               players={players}
               round={currentRound}

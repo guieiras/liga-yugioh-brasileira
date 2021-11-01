@@ -23,6 +23,11 @@ export default function MatchesPanel ({
   const { t } = useTranslation()
   const [editableGame, setEditableGame] = React.useState(null)
 
+  async function handleGameUpdate (match, form) {
+    await onGameUpdate({ id: match.id, ...form })
+    setEditableGame(null)
+  }
+
   function MatchItem ({ match, children }) {
     if (!onGameUpdate) { return <>{children}</> }
 
@@ -34,7 +39,7 @@ export default function MatchesPanel ({
           homePlayer={players[match.home_player_id]}
           match={match}
           onCancel={() => setEditableGame(null)}
-          onSubmit={onGameUpdate}
+          onSubmit={(form) => handleGameUpdate(match, form)}
         />
       </Paper>
     }
