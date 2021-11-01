@@ -17,7 +17,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
   const [loading, setLoading] = React.useState(true)
-  const [roundMatches, setMatches] = React.useState({})
+  const [roundMatches, setRoundMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
   const [lastRound, setLastRound] = React.useState(0)
@@ -62,7 +62,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       const results = await get('admin/matches/search', { season_id: season.id, serie_id: serie.id, round: roundParam })
       const fetchedRound = results[0]?.round
 
-      if (results.length > 0) { setMatches({ ...roundMatches, [fetchedRound]: results }) }
+      if (results.length > 0) { setRoundMatches({ ...roundMatches, [fetchedRound]: results }) }
       if (!round) {
         setLastRound(fetchedRound || 0)
         setCurrentRound(fetchedRound || 0)
@@ -98,7 +98,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       { season_id: season.id, serie_id: serie.id, round: editableRound, matches }
     )
 
-    setMatches({ ...roundMatches, [editableRound]: undefined })
+    setRoundMatches({ ...roundMatches, [editableRound]: undefined })
     getRound(editableRound, true)
     setCurrentRound(editableRound)
     setEditableRound(null)
