@@ -16,7 +16,7 @@ export default function SeriesIndex ({ series: json }) {
   return (
     <AdminLayout index='series' session={session}>
       <Typography variant="h5" component="h1">
-        { t('admin.series') }
+        { t('series') }
       </Typography>
 
       <AdminSeriesTable series={series} sx={{ mt: 2 }} />

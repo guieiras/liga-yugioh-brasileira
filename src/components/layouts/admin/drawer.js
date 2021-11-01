@@ -55,11 +55,11 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
     <Box sx={{ overflow: 'auto' }}>
       { session && <Card variant="outlined">
         <CardContent sx={{ display: 'flex' }}>
-          <Avatar alt={t('admin.drawer.photoAlt')} src={session?.user?.image} />
+          <Avatar alt={t('photoAlt')} src={session?.user?.image} />
           <Box sx={{ ml: 1 }}>
             <Typography variant="button" component="p">{session.user.name}</Typography>
             <Button size='small' startIcon={<ExitToAppIcon />} variant='outlined' sx={{ mt: 1 }} onClick={exit}>
-              { t('admin.drawer.signOut') }
+              { t('signOut') }
             </Button>
           </Box>
         </CardContent>

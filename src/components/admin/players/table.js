@@ -29,14 +29,14 @@ export default function AdminPlayersTable ({ onDelete, players, ...props }) {
 
   return (
     <TableContainer component={Paper} {...props}>
-      <Table aria-label={t('admin.players')}>
+      <Table aria-label={t('players')}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('admin.players.name')}</TableCell>
-            <TableCell>{t('admin.players.state')}</TableCell>
-            { isDesktop && <TableCell>{t('admin.players.konamiId')}</TableCell> }
-            { isDesktop && <TableCell>{t('admin.players.createdAt')}</TableCell> }
-            <TableCell>{t('admin.players.actions')}</TableCell>
+            <TableCell>{t('players.name')}</TableCell>
+            <TableCell>{t('players.state')}</TableCell>
+            { isDesktop && <TableCell>{t('players.konamiId')}</TableCell> }
+            { isDesktop && <TableCell>{t('createdAt')}</TableCell> }
+            <TableCell>{t('actions')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,11 +58,11 @@ export default function AdminPlayersTable ({ onDelete, players, ...props }) {
               { isDesktop && <TableCell>{l(player.created_at)}</TableCell> }
               <TableCell>
                 <IconButton
-                  aria-label={t('admin.players.delete')}
+                  aria-label={t('delete')}
                   color="error"
                   component="span"
                   onClick={handleDelete.bind(player)}
-                  title={t('admin.players.delete')}
+                  title={t('delete')}
                 >
                   <DeleteIcon />
                 </IconButton>

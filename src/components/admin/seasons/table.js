@@ -45,12 +45,12 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
 
   return (
     <TableContainer component={Paper} {...props}>
-      <Table aria-label={t('admin.seasons')}>
+      <Table aria-label={t('seasons')}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('admin.seasons.name')}</TableCell>
-            <TableCell>{t('admin.seasons.createdAt')}</TableCell>
-            <TableCell>{t('admin.seasons.actions')}</TableCell>
+            <TableCell>{t('seasons.name')}</TableCell>
+            <TableCell>{t('createdAt')}</TableCell>
+            <TableCell>{t('actions')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,19 +63,19 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
               <TableCell>{l(season.created_at, 'month')}</TableCell>
               <TableCell>
                 <IconButton
-                  aria-label={t('admin.seasons.show')}
+                  aria-label={t('seasons.show')}
                   component="span"
                   onClick={handleShow.bind(season)}
-                  title={t('admin.seasons.show')}
+                  title={t('seasons.show')}
                 >
                   <VisibilityIcon />
                 </IconButton>
                 <IconButton
-                  aria-label={t('admin.seasons.delete')}
+                  aria-label={t('delete')}
                   color="error"
                   component="span"
                   onClick={handleDelete.bind(season)}
-                  title={t('admin.seasons.delete')}
+                  title={t('delete')}
                 >
                   <DeleteIcon />
                 </IconButton>
@@ -90,7 +90,7 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
                     <TextField
                       fullWidth
                       onChange={e => setName(e.target.value)}
-                      label={t('admin.seasons.form')}
+                      label={t('seasons.new')}
                       variant="standard"
                       value={name}
                     />
@@ -99,12 +99,10 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
                     {
                       isDesktop
                         ? (
-                        <Button startIcon={<AddIcon />} type='submit'>
-                          {t('admin.seasons.submit')}
-                        </Button>
+                        <Button startIcon={<AddIcon />} type='submit'>{t('add')}</Button>
                           )
                         : (
-                        <IconButton aria-label={t('admin.seasons.submit')} title={t('admin.seasons.submit')}>
+                        <IconButton aria-label={t('add')} title={t('add')}>
                           <AddIcon />
                         </IconButton>
                           )

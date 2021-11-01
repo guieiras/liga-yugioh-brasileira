@@ -128,9 +128,9 @@ export default function AdminSeasonShow ({ data: json }) {
               </Typography>
               {
                 participants[serie.id]?.length && <IconButton
-                  aria-label={t('admin.show.matches')}
+                  aria-label={t('matches.manage')}
                   onClick={() => { push(`/admin/seasons/${season.id}/series/${serie.id}`) }}
-                  title={t('admin.show.matches')}
+                  title={t('matches.manage')}
                 >
                   <VisibilityIcon />
                 </IconButton>
@@ -152,11 +152,11 @@ export default function AdminSeasonShow ({ data: json }) {
                     key={participant}
                     secondaryAction={
                       <IconButton
-                        aria-label={t('admin.show.delete')}
+                        aria-label={t('delete')}
                         color="error"
                         edge="end"
                         onClick={handleDelete.bind(season, serie, participant)}
-                        title={t('admin.show.delete')}
+                        title={t('delete')}
                       >
                         <CloseIcon />
                       </IconButton>

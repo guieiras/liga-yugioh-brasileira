@@ -42,7 +42,7 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
             fullWidth
             onChange={(e) => setName(e.target.value)}
             margin="normal"
-            label={t('admin.players.name')}
+            label={t('players.name')}
             required
             value={name}
             variant="standard"
@@ -50,9 +50,9 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
         </Grid>
         <Grid item xs={12} md={4}>
           <FormControl fullWidth variant="standard" sx={{ mt: 2 }}>
-            <InputLabel>{t('admin.players.state')}</InputLabel>
+            <InputLabel>{t('players.state')}</InputLabel>
             <Select
-              label={t('admin.players.state')}
+              label={t('players.state')}
               onChange={(e) => setState(e.target.value)}
               value={state}
               required
@@ -65,7 +65,7 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label={t('admin.players.konamiId')}
+            label={t('players.konamiId')}
             margin="normal"
             onChange={(e) => handleKonamiId(e.target.value)}
             value={konamiId}
@@ -74,7 +74,7 @@ export default function AdminPlayersForm ({ onSubmit, ...props }) {
         </Grid>
         <Grid item xs={12} sx={{ textAlign: 'right' }}>
           <Button type='submit'>
-            {t('admin.players.submit')}
+            {t('save')}
           </Button>
         </Grid>
       </Grid>

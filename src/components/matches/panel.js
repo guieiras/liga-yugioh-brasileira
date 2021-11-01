@@ -31,14 +31,16 @@ export default function MatchesPanel ({
   return (
     <Paper {...props} sx={{ p: 3, ...(sx || {}) }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <IconButton disabled={round === 1} onClick={onBack}><ArrowBackIcon /></IconButton>
+        <IconButton disabled={round === 1} onClick={onBack} title={t('rounds.previous')}><ArrowBackIcon /></IconButton>
         <Typography variant="button">{t('currentRound', { round })}</Typography>
         {
-          round < lastRound ? (
-            <IconButton onClick={onForward}><ArrowForwardIcon /></IconButton>
-          ) : (
-            <IconButton onClick={onNewRound}><AddIcon /></IconButton>
-          )
+          round < lastRound
+            ? (
+            <IconButton onClick={onForward} title={t('rounds.next')}><ArrowForwardIcon /></IconButton>
+              )
+            : (
+              <IconButton onClick={onNewRound} title={t('rounds.new')}><AddIcon /></IconButton>
+              )
         }
       </Box>
 

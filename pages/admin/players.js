@@ -34,13 +34,13 @@ export default function Index ({ players: json }) {
   return (
     <AdminLayout index='players' session={session}>
       <Typography variant="h5" component="h1">
-        {t('admin.players')}
+        {t('players')}
       </Typography>
 
       <AdminPlayersTable players={players} sx={{ mt: 2 }} onDelete={deletePlayer} />
 
       <Typography variant="h6" component="h2" mt={3}>
-        {t('admin.players.form.title')}
+        {t('players.new')}
       </Typography>
 
       <AdminPlayersForm sx={{ mt: 4 }} onSubmit={savePlayer} />

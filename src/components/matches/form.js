@@ -30,7 +30,7 @@ export default function MatchesForm ({ round, onCancel, onSubmit, players, sx, .
       value={selectedPlayers[index] || ''}
       onChange={handleChange.bind(this, index)}
     >
-      <MenuItem value=""><em>{t('rounds.blank')}</em></MenuItem>
+      <MenuItem value=""><em>{t('blankOption')}</em></MenuItem>
       {
         remainingPlayers(index).map((option) => (
           <MenuItem key={option} value={option}>

@@ -39,7 +39,7 @@ export default function SeasonsIndex ({ seasons: json }) {
   return (
     <AdminLayout index='seasons' session={session}>
       <Typography variant="h5" component="h1">
-        {t('admin.seasons')}
+        {t('seasons')}
       </Typography>
 
       <AdminSeasonsTable
