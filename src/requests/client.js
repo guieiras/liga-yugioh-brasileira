@@ -21,6 +21,17 @@ export async function post (path, body) {
   }).then(parseResponse)
 }
 
+export async function put (path, body) {
+  return fetch(`/api/${path}`, {
+    method: 'PUT',
+    body: body === undefined ? body : JSON.stringify(body),
+    headers: new Headers({
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    })
+  }).then(parseResponse)
+}
+
 export async function del (path, body) {
   return fetch(`/api/${path}`, {
     method: 'DELETE',
