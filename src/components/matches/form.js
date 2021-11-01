@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useTranslation } from 'next-i18next'
 
-export default function MatchesForm ({ round, onCancel, onSubmit, players, sx, ...props }) {
+export default function MatchesForm ({ matches, round, onCancel, onSubmit, players, sx, ...props }) {
   const { t } = useTranslation()
   const [selectedPlayers, setSelectedPlayers] = React.useState([])
   const [options, setOptions] = React.useState([])
@@ -22,6 +22,14 @@ export default function MatchesForm ({ round, onCancel, onSubmit, players, sx, .
       players[a] > players[b] ? 1 : players[a] < players[b] ? -1 : 0
     )))
   }, [players])
+
+  React.useEffect(() => {
+    if (matches) {
+      setSelectedPlayers(
+        matches.flatMap((match) => [match.home_player_id.toString(), match.away_player_id.toString()])
+      )
+    }
+  }, [matches])
 
   function PlayersSelect ({ index }) {
     return <Select

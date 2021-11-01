@@ -11,6 +11,7 @@
   "createdAt": "Created at",
   "currentRound": "Round {{round}}",
   "delete": "Delete",
+  "edit": "Edit",
   "players": "Players",
   "players.name": "Name",
   "players.new": "New player",

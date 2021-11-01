@@ -11,6 +11,7 @@
   "createdAt": "Criado em",
   "currentRound": "Rodada {{round}}",
   "delete": "Remover",
+  "edit": "Editar",
   "players": "Jogadores",
   "players.name": "Nome",
   "players.new": "Novo jogador",

@@ -12,10 +12,11 @@ import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos'
 import ClearIcon from '@mui/icons-material/Clear'
+import EditIcon from '@mui/icons-material/Edit'
 import { useTranslation } from 'next-i18next'
 
 export default function MatchesPanel ({
-  onNewRound, matches, players, onBack, onForward, round, lastRound, sx, ...props
+  onNewRound, matches, players, onEdit, onBack, onForward, round, lastRound, sx, ...props
 }) {
   const { t } = useTranslation()
 
@@ -63,6 +64,13 @@ export default function MatchesPanel ({
           ))
         }
       </List>
+      {
+        onEdit && <Box sx={{ textAlign: 'right' }}>
+          <IconButton role="button" onClick={onEdit} title={t('edit')}>
+            <EditIcon />
+          </IconButton>
+        </Box>
+      }
     </Paper>
   )
 }

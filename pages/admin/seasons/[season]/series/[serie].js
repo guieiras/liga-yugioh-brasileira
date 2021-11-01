@@ -30,13 +30,19 @@ export default function AdminSeasonMatches ({ data: json }) {
   function handleNewRound () {
     setEditableRound(lastRound + 1)
   }
+
   function handleBack () {
     getRound(currentRound - 1)
     setCurrentRound(currentRound - 1)
   }
+
   function handleForward () {
     getRound(currentRound + 1)
     setCurrentRound(currentRound + 1)
+  }
+
+  function handleEdit () {
+    setEditableRound(currentRound)
   }
 
   async function getParticipations () {
@@ -46,9 +52,9 @@ export default function AdminSeasonMatches ({ data: json }) {
     setPlayers(Object.fromEntries(results.map((result) => [result.id, result.name])))
   }
 
-  async function getRound (round) {
+  async function getRound (round, force = false) {
     const roundParam = round || 'last'
-    if (!matches[round]) {
+    if (!matches[round] || force) {
       const results = await get('admin/matches/search', { season_id: season.id, serie_id: serie.id, round: roundParam })
       const fetchedRound = results[0]?.round
 
@@ -72,7 +78,8 @@ export default function AdminSeasonMatches ({ data: json }) {
       { season_id: season.id, serie_id: serie.id, round: editableRound, matches }
     )
 
-    getRound(editableRound)
+    setMatches({ ...matches, [editableRound]: undefined })
+    getRound(editableRound, true)
     setCurrentRound(editableRound)
     setEditableRound(null)
     setLastRound(Math.max(lastRound, editableRound))
@@ -91,6 +98,7 @@ export default function AdminSeasonMatches ({ data: json }) {
           ? <MatchesForm
               onCancel={cancelRound}
               onSubmit={saveRound}
+              matches={matches[currentRound]}
               players={players}
               round={editableRound}
               sx={{ mt: 2 }}
@@ -99,6 +107,7 @@ export default function AdminSeasonMatches ({ data: json }) {
               lastRound={lastRound}
               matches={matches[currentRound] || []}
               onBack={handleBack}
+              onEdit={handleEdit}
               onForward={handleForward}
               onNewRound={handleNewRound}
               players={players}
