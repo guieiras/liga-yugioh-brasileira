@@ -2,6 +2,8 @@ import React from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useSession } from 'next-auth/react'
 import { deserialize, serialize } from 'superjson'
+import CircularProgress from '@mui/material/CircularProgress'
+import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import AdminLayout from '../../../../../src/components/layouts/admin'
 import { authenticate } from '../../../../../src/middlewares/session'
@@ -14,6 +16,7 @@ import MatchesPanel from '../../../../../src/components/matches/panel'
 export default function AdminSeasonMatches ({ data: json }) {
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
+  const [loading, setLoading] = React.useState(true)
   const [matches, setMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
@@ -21,8 +24,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   const [editableRound, setEditableRound] = React.useState(null)
 
   React.useEffect(() => {
-    getParticipations()
-    getRound()
+    Promise.all([getParticipations(), getRound()]).then(() => { setLoading(false) })
   }, [])
 
   function handleNewRound () {
@@ -50,7 +52,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       const results = await get('admin/matches/search', { season_id: season.id, serie_id: serie.id, round: roundParam })
       const fetchedRound = results[0]?.round
 
-      if (results.length > 0) { setMatches({ [fetchedRound]: results }) }
+      if (results.length > 0) { setMatches({ ...matches, [fetchedRound]: results }) }
       if (!round) {
         setLastRound(fetchedRound || 0)
         setCurrentRound(fetchedRound || 0)
@@ -81,7 +83,11 @@ export default function AdminSeasonMatches ({ data: json }) {
       <Typography variant="h5" component="h1">{season.name} | {serie[`name_${locale}`]}</Typography>
 
       {
-        editableRound !== null
+        loading
+          ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
+            <CircularProgress />
+          </Paper>
+          : editableRound !== null
           ? <MatchesForm
               onCancel={cancelRound}
               onSubmit={saveRound}
