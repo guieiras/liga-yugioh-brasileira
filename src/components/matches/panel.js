@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
 import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -14,11 +15,37 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos'
 import ClearIcon from '@mui/icons-material/Clear'
 import EditIcon from '@mui/icons-material/Edit'
 import { useTranslation } from 'next-i18next'
+import MatchEdit from './edit'
 
 export default function MatchesPanel ({
-  onNewRound, matches, players, onEdit, onBack, onForward, round, lastRound, sx, ...props
+  onNewRound, matches, players, onEdit, onBack, onGameUpdate, onForward, round, lastRound, sx, ...props
 }) {
   const { t } = useTranslation()
+  const [editableGame, setEditableGame] = React.useState(null)
+
+  function MatchItem ({ match, children }) {
+    if (!onGameUpdate) { return <>{children}</> }
+
+    if (editableGame === match.id) {
+      return <Paper sx={{ display: 'flex', flexDirection: 'column', width: '100%', ...(sx || {}) }}>
+        {children}
+        <MatchEdit
+          awayPlayer={players[match.away_player_id]}
+          homePlayer={players[match.home_player_id]}
+          match={match}
+          onCancel={() => setEditableGame(null)}
+          onSubmit={onGameUpdate}
+        />
+      </Paper>
+    }
+
+    return <ListItemButton
+      title={t('matches.edit')}
+      onClick={setEditableGame.bind(this, match.id)}
+    >
+      { children }
+    </ListItemButton>
+  }
 
   if (round === 0) {
     return <Paper {...props} sx={{ p: 3, textAlign: 'center', ...(sx || {}) }}>
@@ -40,7 +67,9 @@ export default function MatchesPanel ({
             <IconButton onClick={onForward} title={t('rounds.next')}><ArrowForwardIcon /></IconButton>
               )
             : (
-              <IconButton onClick={onNewRound} title={t('rounds.new')}><AddIcon /></IconButton>
+              <IconButton disabled={!onNewRound} onClick={onNewRound} title={t('rounds.new')} sx={{ visibility: !onNewRound ? 'hidden' : '' }}>
+                <AddIcon />
+              </IconButton>
               )
         }
       </Box>
@@ -49,24 +78,26 @@ export default function MatchesPanel ({
         {
           matches.map((match) => (
             <ListItem key={match.id}>
-              <Grid container>
-                <Grid item xs={5} sx={{ textAlign: 'right' }}>
-                  <Typography sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
+              <MatchItem match={match}>
+                <Grid container>
+                  <Grid item xs={5} sx={{ textAlign: 'right' }}>
+                    <Typography sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
+                  </Grid>
+                  <Grid item xs={2} sx={{ textAlign: 'center' }}>
+                    <ClearIcon sx={{ height: '100%' }} />
+                  </Grid>
+                  <Grid item xs={5} sx={{ textAlign: 'left' }}>
+                    <Typography sx={{ p: 1 }}>{players[match.away_player_id]}</Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={2} sx={{ textAlign: 'center' }}>
-                  <ClearIcon sx={{ height: '100%' }} />
-                </Grid>
-                <Grid item xs={5} sx={{ textAlign: 'left' }}>
-                  <Typography sx={{ p: 1 }}>{players[match.away_player_id]}</Typography>
-                </Grid>
-              </Grid>
+              </MatchItem>
             </ListItem>
           ))
         }
       </List>
       {
-        onEdit && <Box sx={{ textAlign: 'right' }}>
-          <IconButton role="button" onClick={onEdit} title={t('edit')}>
+        onEdit && !editableGame && <Box sx={{ textAlign: 'right' }}>
+          <IconButton role="button" onClick={onEdit} title={t('matches.manage')}>
             <EditIcon />
           </IconButton>
         </Box>
