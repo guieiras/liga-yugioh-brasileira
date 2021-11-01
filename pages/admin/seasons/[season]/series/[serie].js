@@ -10,8 +10,8 @@ import { authenticate } from '../../../../../src/middlewares/session'
 import { getSerie } from '../../../../../src/repositories/series'
 import { getSeason } from '../../../../../src/repositories/seasons'
 import { get, post, put } from '../../../../../src/requests/client'
-import MatchesForm from '../../../../../src/components/matches/form'
-import MatchesPanel from '../../../../../src/components/matches/panel'
+import RoundsForm from '../../../../../src/components/rounds/form'
+import RoundsPanel from '../../../../../src/components/rounds/panel'
 
 export default function AdminSeasonMatches ({ data: json }) {
   const { locale, season, serie } = deserialize(json)
@@ -115,7 +115,7 @@ export default function AdminSeasonMatches ({ data: json }) {
             <CircularProgress />
           </Paper>
           : editableRound !== null
-          ? <MatchesForm
+          ? <RoundsForm
               onCancel={cancelRound}
               onSubmit={saveRound}
               matches={roundMatches[editableRound]}
@@ -123,7 +123,7 @@ export default function AdminSeasonMatches ({ data: json }) {
               round={editableRound}
               sx={{ mt: 2 }}
             />
-          : <MatchesPanel
+          : <RoundsPanel
               lastRound={lastRound}
               matches={roundMatches[currentRound] || []}
               onBack={handleBack}

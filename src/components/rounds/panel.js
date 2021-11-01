@@ -15,9 +15,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos'
 import ClearIcon from '@mui/icons-material/Clear'
 import EditIcon from '@mui/icons-material/Edit'
 import { useTranslation } from 'next-i18next'
-import MatchEdit from './edit'
+import RoundsEdit from './edit'
 
-export default function MatchesPanel ({
+export default function RoundsPanel ({
   onNewRound, matches, players, onEdit, onBack, onGameUpdate, onForward, round, lastRound, sx, ...props
 }) {
   const { t } = useTranslation()
@@ -34,7 +34,7 @@ export default function MatchesPanel ({
     if (editableGame === match.id) {
       return <Paper sx={{ display: 'flex', flexDirection: 'column', width: '100%', ...(sx || {}) }}>
         {children}
-        <MatchEdit
+        <RoundsEdit
           awayPlayer={players[match.away_player_id]}
           homePlayer={players[match.home_player_id]}
           match={match}
