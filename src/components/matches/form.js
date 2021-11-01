@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useTranslation } from 'next-i18next'
 
-export default function MatchesForm ({ round, onSubmit, players, sx, ...props }) {
+export default function MatchesForm ({ round, onCancel, onSubmit, players, sx, ...props }) {
   const { t } = useTranslation()
   const [selectedPlayers, setSelectedPlayers] = React.useState([])
   const [options, setOptions] = React.useState([])
@@ -26,6 +26,7 @@ export default function MatchesForm ({ round, onSubmit, players, sx, ...props })
   function PlayersSelect ({ index }) {
     return <Select
       fullWidth
+      size="small"
       value={selectedPlayers[index] || ''}
       onChange={handleChange.bind(this, index)}
     >
@@ -58,6 +59,14 @@ export default function MatchesForm ({ round, onSubmit, players, sx, ...props })
     onSubmit && onSubmit(tables)
   }
 
+  function handleCancel () {
+    onCancel && onCancel()
+  }
+
+  function readyToSubmit () {
+    return options.length - selectedPlayers.filter((v) => v).length === options.length % 2
+  }
+
   return (
     <Paper component='form' {...props} sx={{ p: 3, ...(sx || {}) }}>
       <Typography variant="button" component="p" sx={{ textAlign: 'center' }}>
@@ -82,14 +91,14 @@ export default function MatchesForm ({ round, onSubmit, players, sx, ...props })
           ))
         }
       </List>
-      {
-        options.length - selectedPlayers.filter((v) => v).length === options.length % 2 &&
-          <Box sx={{ textAlign: 'center' }}>
-            <Button onClick={handleSubmit}>
-              { t('save') }
-            </Button>
-          </Box>
-      }
+      <Box sx={{ textAlign: 'center' }}>
+        <Button onClick={handleCancel} variant="secondary">
+          { t('cancel') }
+        </Button>
+        <Button onClick={handleSubmit} disabled={!readyToSubmit()}>
+          { t('save') }
+        </Button>
+      </Box>
     </Paper>
   )
 }
