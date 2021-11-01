@@ -31,14 +31,18 @@ export default function AdminSeasonMatches ({ data: json }) {
     setEditableRound(lastRound + 1)
   }
 
-  function handleBack () {
-    getRound(currentRound - 1)
+  async function handleBack () {
+    setLoading(true)
+    await getRound(currentRound - 1)
     setCurrentRound(currentRound - 1)
+    setLoading(false)
   }
 
-  function handleForward () {
-    getRound(currentRound + 1)
+  async function handleForward () {
+    setLoading(true)
+    await getRound(currentRound + 1)
     setCurrentRound(currentRound + 1)
+    setLoading(false)
   }
 
   function handleEdit () {
