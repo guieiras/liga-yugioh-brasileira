@@ -102,7 +102,7 @@ export default function AdminSeasonMatches ({ data: json }) {
           ? <MatchesForm
               onCancel={cancelRound}
               onSubmit={saveRound}
-              matches={matches[currentRound]}
+              matches={matches[editableRound]}
               players={players}
               round={editableRound}
               sx={{ mt: 2 }}
