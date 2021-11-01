@@ -11,7 +11,6 @@ export default withAuthentication(async (req, res) => {
     playoff: req.body.playoff,
     matches: req.body.matches
   })
-  console.log(matches)
 
   res.send(matches)
 })
