@@ -22,7 +22,7 @@ export default function MatchesPanel ({
   if (round === 0) {
     return <Paper {...props} sx={{ p: 3, textAlign: 'center', ...(sx || {}) }}>
       { onNewRound
-        ? <Button onClick={onNewRound}>{t('rounds.new')}</Button>
+        ? <Button onClick={onNewRound}>{t('rounds.first')}</Button>
         : <Typography>{t('rounds.none')}</Typography>
       }
     </Paper>

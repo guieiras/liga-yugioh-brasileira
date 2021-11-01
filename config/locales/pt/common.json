@@ -17,6 +17,7 @@
   "players.state": "Estado",
   "players.konamiId": "Konami ID",
   "matches.manage": "Gerenciar partidas",
+  "rounds.first": "Adicionar primeira rodada",
   "rounds.new": "Nova rodada",
   "rounds.next": "Ver próxima rodada",
   "rounds.none": "Nenhuma rodada cadastrada",

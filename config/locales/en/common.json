@@ -17,6 +17,7 @@
   "players.state": "State",
   "players.konamiId": "Konami ID",
   "matches.manage": "Manage matches",
+  "rounds.first": "Add first round",
   "rounds.new": "New round",
   "rounds.next": "Go to next round",
   "rounds.none": "No rounds were registered",
