@@ -12,8 +12,8 @@ import { useTranslation } from 'next-i18next'
 export default function RoundsEdit({ match, onCancel, onSubmit, homePlayer, awayPlayer }) {
   const { t } = useTranslation()
   const [winner, setWinner] = React.useState(typeof match.winner === 'number' ? match.winner  : '')
-  const [analysisUrl, setAnalysisUrl] = React.useState(match.prrj_video_url || '')
-  const [replayUrl, setReplayUrl] = React.useState(match.dueling_book_url || '')
+  const [analysisUrl, setAnalysisUrl] = React.useState(match.prrj_youtube_video_url || '')
+  const [replayUrl, setReplayUrl] = React.useState(match.dueling_book_replay_url || '')
 
   function isValidToSubmit() {
     return winner !== ''
