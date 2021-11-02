@@ -86,7 +86,7 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
             <TableCell colSpan={3}>
               <form onSubmit={submit}>
                 <Grid container spacing={2} alignItems="center">
-                  <Grid item xs={10} >
+                  <Grid item xs={10}>
                     <TextField
                       fullWidth
                       onChange={e => setName(e.target.value)}
