@@ -7,7 +7,7 @@ export default withAuthentication((req, res) => {
   return res.status(404).send({ error: 'Route not found' })
 })
 
-async function update(req, res) {
+async function update (req, res) {
   try {
     const match = await updateMatch({
       id: req.query.id,

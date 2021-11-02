@@ -51,7 +51,7 @@ export async function createBatchMatches ({ seasonId, serieId, round, playoff, m
   }
 }
 
-export async function updateMatch({ id, winner, analysisUrl, replayUrl }) {
+export async function updateMatch ({ id, winner, analysisUrl, replayUrl }) {
   const query = db('matches').where('id', id)
 
   const updateParams = {}
