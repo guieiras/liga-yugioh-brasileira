@@ -36,7 +36,7 @@ export default function RoundsPanel ({
     setEditableGame(null)
   }
 
-  function matchWinner(match, winner) {
+  function matchWinner (match, winner) {
     if (match.winner === null) { return grey[500] }
     if (match.winner === 0) { return yellow[500] }
 
@@ -47,7 +47,8 @@ export default function RoundsPanel ({
     return <Box>
       {
         match.dueling_book_replay_url && (
-          isDesktop ? <Button
+          isDesktop
+            ? <Button
             component="a"
             color="info"
             target="_blank"
@@ -57,7 +58,8 @@ export default function RoundsPanel ({
             variant="outlined"
           >
             {t('matches.replay')}
-          </Button> : <IconButton
+          </Button>
+            : <IconButton
               component="a"
               target="_blank"
               href={match.dueling_book_replay_url}
@@ -69,24 +71,26 @@ export default function RoundsPanel ({
       }
       {
         match.prrj_youtube_video_url && (
-          isDesktop ? <Button
+          isDesktop
+            ? <Button
             component="a"
             color="info"
             target="_blank"
             href={match.prrj_youtube_video_url}
-            startIcon={<Image alt="" src={`/img/prrj.jpg`} height={24} width={24} />}
+            startIcon={<Image alt="" src={'/img/prrj.jpg'} height={24} width={24} />}
             sx={{ '& img': { borderRadius: 50 }, marginLeft: 1, marginRight: 1 }}
             variant="outlined"
           >
             {t('matches.analysis')}
-          </Button> : <IconButton
+          </Button>
+            : <IconButton
             component="a"
             target="_blank"
             href={match.prrj_youtube_video_url}
             title={t('matches.analysis')}
             sx={{ '& img': { borderRadius: 50 } }}
           >
-            <Image alt="" src={`/img/prrj.jpg`} height={24} width={24} />
+            <Image alt="" src={'/img/prrj.jpg'} height={24} width={24} />
           </IconButton>
 
         )
@@ -164,7 +168,7 @@ export default function RoundsPanel ({
                     <Typography sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
                   </Grid>
                   <Grid item xs={1} sx={{ textAlign: 'right' }}>
-                    <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 1), height: '100%' }}  />
+                    <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 1), height: '100%' }} />
                   </Grid>
                   <Grid item xs={2} sx={{ textAlign: 'center' }}>
                     <ClearIcon sx={{ height: '100%' }} />
