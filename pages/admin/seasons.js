@@ -10,7 +10,7 @@ import AdminLayout from '../../src/components/layouts/admin'
 import AdminSeasonsTable from '../../src/components/admin/seasons/table'
 import { authenticate } from '../../src/middlewares/session'
 import { getSeasons } from '../../src/repositories/seasons'
-import { del, post } from '../../src/requests/client'
+import { del, post, put } from '../../src/requests/client'
 
 export default function SeasonsIndex ({ seasons: json }) {
   const { push } = useRouter()
@@ -36,6 +36,13 @@ export default function SeasonsIndex ({ seasons: json }) {
       })
   }
 
+  async function setCurrent (seasonId) {
+    return put(`admin/seasons/${seasonId}`, { current: true })
+      .then(() => {
+        setSeasons(seasons.map((season) => ({ ...season, current: season.id === seasonId })))
+      })
+  }
+
   return (
     <AdminLayout index='seasons' session={session}>
       <Typography variant="h5" component="h1">
@@ -48,6 +55,7 @@ export default function SeasonsIndex ({ seasons: json }) {
         onDelete={deleteSeason}
         onCreate={saveSeason}
         onShow={showSeason}
+        onSetCurrent={setCurrent}
       />
     </AdminLayout>
   )

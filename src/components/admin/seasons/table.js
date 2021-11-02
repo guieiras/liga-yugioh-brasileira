@@ -14,12 +14,16 @@ import TableRow from '@mui/material/TableRow'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import AddIcon from '@mui/icons-material/Add'
+import StarIcon from '@mui/icons-material/Star'
+import StarOutlinedIcon from '@mui/icons-material/StarBorderOutlined'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslation } from 'next-i18next'
 import useLocalization from '../../../useLocalization'
 
-export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons, ...props }) {
+export default function AdminSeasonsTable ({
+  onCreate, onDelete, onShow, onSetCurrent, seasons, ...props
+}) {
   const { t } = useTranslation()
   const { l } = useLocalization()
 
@@ -41,6 +45,10 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
 
   function handleDelete () {
     onDelete && onDelete(this.id)
+  }
+
+  function handleSetCurrent () {
+    onSetCurrent && onSetCurrent(this.id)
   }
 
   return (
@@ -69,6 +77,15 @@ export default function AdminSeasonsTable ({ onCreate, onDelete, onShow, seasons
                   title={t('seasons.show')}
                 >
                   <VisibilityIcon />
+                </IconButton>
+                <IconButton
+                  aria-label={t('seasons.current')}
+                  component="span"
+                  disabled={season.current}
+                  onClick={handleSetCurrent.bind(season)}
+                  title={t('seasons.current')}
+                >
+                  {season.current ? <StarIcon /> : <StarOutlinedIcon />}
                 </IconButton>
                 <IconButton
                   aria-label={t('delete')}
