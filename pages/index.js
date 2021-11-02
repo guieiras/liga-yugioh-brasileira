@@ -1,20 +1,21 @@
 import * as React from 'react'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Link from '../src/components/Link'
+import PublicLayout from '../src/components/layouts/public'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function Index () {
+  const { t } = useTranslation()
+
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Hello Next.js!
-        </Typography>
-        <Link href="https://nextjs.org/docs/getting-started" color="secondary">
-          Go to docs
-        </Link>
-      </Box>
-    </Container>
+    <PublicLayout index="home" title={t('title')}>
+    </PublicLayout>
   )
+}
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    }
+  }
 }
