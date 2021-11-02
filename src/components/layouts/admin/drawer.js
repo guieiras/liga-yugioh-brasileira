@@ -66,7 +66,7 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
       </Card> }
       <List component="nav">
         <ListSubheader>
-          { t('admin.drawer.title') }
+          { t('drawer.title') }
         </ListSubheader>
         {
           items.map(({ name, icon: Icon, route }) => (

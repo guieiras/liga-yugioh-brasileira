@@ -1,6 +1,5 @@
 {
   "title": "LYB - Liga Yu-Gi-Oh Brasileira",
-  "admin.drawer.title": "Menu de navegação",
   "admin.drawer.series": "Séries",
   "admin.drawer.players": "Jogadores",
   "admin.drawer.seasons": "Temporadas",
@@ -12,6 +11,7 @@
   "currentRound": "Rodada {{round}}",
   "delete": "Remover",
   "draw": "Empate",
+  "drawer.title": "Menu de navegação",
   "edit": "Editar",
   "players": "Jogadores",
   "players.name": "Nome",
