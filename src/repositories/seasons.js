@@ -22,6 +22,32 @@ export async function createSeason ({ name }) {
   return { id, ...season }
 }
 
+export async function updateSeason (id, { current }) {
+  try {
+    let returnedValue
+
+    await db.transaction(async (transaction) => {
+      const query = transaction('seasons').where('id', id)
+      const season = (await query.clone().select('*'))[0]
+      returnedValue = season
+
+      if (!season) { return returnedValue = null }
+      if (current) {
+        await transaction('seasons').update({ current: false })
+        await query.clone().update({ current: true })
+
+        returnedValue.current = true
+      }
+
+      await query.clone().update({ updated_at: new Date() })
+    })
+
+    return returnedValue
+  } catch {
+    return null
+  }
+}
+
 export async function deleteSeason (seasonId) {
   const rows = await db('seasons').where('id', seasonId).del()
 
