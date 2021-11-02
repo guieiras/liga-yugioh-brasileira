@@ -115,7 +115,7 @@ export default function AdminSeasonMatches ({ data: json }) {
             <CircularProgress />
           </Paper>
           : editableRound !== null
-          ? <RoundsForm
+            ? <RoundsForm
               onCancel={cancelRound}
               onSubmit={saveRound}
               matches={roundMatches[editableRound]}
@@ -123,7 +123,7 @@ export default function AdminSeasonMatches ({ data: json }) {
               round={editableRound}
               sx={{ mt: 2 }}
             />
-          : <RoundsPanel
+            : <RoundsPanel
               lastRound={lastRound}
               matches={roundMatches[currentRound] || []}
               onBack={handleBack}
