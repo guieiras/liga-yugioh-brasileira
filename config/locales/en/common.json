@@ -31,6 +31,7 @@
   "rounds.next": "Go to next round",
   "rounds.none": "No rounds were registered",
   "rounds.previous": "Go to previous round",
+  "rounds.waiting": "Waiting for the first round",
   "save": "Save",
   "seasons": "Seasons",
   "seasons.current": "Current season",
@@ -39,6 +40,7 @@
   "seasons.new": "New season",
   "seasons.show": "Show season",
   "series": "Series",
+  "series.show": "Show results",
   "signOut": "Sign Out",
   "user.photo": "Profile photo"
 }

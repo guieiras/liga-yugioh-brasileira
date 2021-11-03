@@ -31,6 +31,7 @@
   "rounds.next": "Ver próxima rodada",
   "rounds.none": "Nenhuma rodada cadastrada",
   "rounds.previous": "Ver rodada anterior",
+  "rounds.waiting": "Aguardando a primeira rodada",
   "save": "Salvar",
   "seasons": "Temporadas",
   "seasons.current": "Temporada atual",
@@ -39,6 +40,7 @@
   "seasons.new": "Nova temporada",
   "seasons.show": "Ver temporada",
   "series": "Divisões",
+  "series.show": "Ver resultados",
   "signOut": "Sair",
   "user.photo": "Foto de perfil"
 }
