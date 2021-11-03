@@ -22,7 +22,7 @@ export default function PublicLayout ({ children, index, title }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Head>
-        <title>{title || t(`public.drawer.${index}`)} | {t('title')}</title>
+        <title>{title || t(`public.drawer.${index}`)}</title>
       </Head>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>

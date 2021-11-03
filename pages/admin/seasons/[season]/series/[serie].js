@@ -106,7 +106,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   }
 
   return (
-    <AdminLayout title={season.name} session={session}>
+    <AdminLayout relativeTitle={season.name} session={session}>
       <Typography variant="h5" component="h1">{season.name} | {serie[`name_${locale}`]}</Typography>
 
       {
