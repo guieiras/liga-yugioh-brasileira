@@ -79,11 +79,11 @@ export default function AdminSeasonsTable ({
                   <VisibilityIcon />
                 </IconButton>
                 <IconButton
-                  aria-label={t('seasons.current')}
+                  aria-label={t('seasons.current.set')}
                   component="span"
                   disabled={season.current}
                   onClick={handleSetCurrent.bind(season)}
-                  title={t('seasons.current')}
+                  title={t('seasons.current.set')}
                 >
                   {season.current ? <StarIcon /> : <StarOutlinedIcon />}
                 </IconButton>
