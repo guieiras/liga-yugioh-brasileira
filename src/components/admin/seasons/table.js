@@ -81,7 +81,7 @@ export default function AdminSeasonsTable ({
                 <IconButton
                   aria-label={t('seasons.current.set')}
                   component="span"
-                  disabled={season.current}
+                  disabled={!!season.current}
                   onClick={handleSetCurrent.bind(season)}
                   title={t('seasons.current.set')}
                 >
