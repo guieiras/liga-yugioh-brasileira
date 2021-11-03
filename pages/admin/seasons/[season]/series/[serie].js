@@ -59,7 +59,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   async function getRound (round, force = false) {
     const roundParam = round || 'last'
     if (!roundMatches[round] || force) {
-      const results = await get('admin/matches/search', { season_id: season.id, serie_id: serie.id, round: roundParam })
+      const results = await get('matches', { season_id: season.id, serie_id: serie.id, round: roundParam })
       const fetchedRound = results[0]?.round
 
       if (results.length > 0) { setRoundMatches({ ...roundMatches, [fetchedRound]: results }) }
