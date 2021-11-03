@@ -63,6 +63,19 @@ export async function getParticipations (seasonId, filters = {}) {
   return query
 }
 
+export async function fetchCurrentSeason () {
+  const query = db('seasons')
+    .join('seasons_participations', 'seasons_participations.season_id', 'seasons.id')
+    .join('series', 'seasons_participations.serie_id', 'series.id')
+
+  return query.distinct(
+    'series.id as serie_id',
+    'seasons.id as season_id',
+    'series.name_pt',
+    'series.name_en'
+  ).where('seasons.current', true)
+}
+
 export async function createSeasonParticipation ({ playerId, seasonId, serieId }) {
   const participation = {
     player_id: playerId,
