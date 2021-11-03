@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { useTranslation } from 'next-i18next'
 
-export default function PublicLayout({ children, index, title }) {
+export default function PublicLayout ({ children, index, title }) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = React.useState(false)
   const theme = useTheme()
