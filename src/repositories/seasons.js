@@ -31,7 +31,8 @@ export async function updateSeason (id, { current }) {
       const season = (await query.clone().select('*'))[0]
       returnedValue = season
 
-      if (!season) { return returnedValue = null }
+      if (!season) { return }
+
       if (current) {
         await transaction('seasons').update({ current: false })
         await query.clone().update({ current: true })
