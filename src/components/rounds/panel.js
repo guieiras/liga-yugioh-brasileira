@@ -24,7 +24,8 @@ import { useTranslation } from 'next-i18next'
 import RoundsEdit from './edit'
 
 export default function RoundsPanel ({
-  onNewRound, matches, players, onEdit, onBack, onGameUpdate, onForward, round, lastRound, sx, ...props
+  onNewRound, matches, players, onEdit, onBack, onGameUpdate, onForward, round, lastRound, sx,
+  controls, ...props
 }) {
   const { t } = useTranslation()
   const [editableGame, setEditableGame] = React.useState(null)
@@ -142,21 +143,25 @@ export default function RoundsPanel ({
 
   return (
     <Paper {...props} sx={{ p: 3, ...(sx || {}) }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <IconButton disabled={round === 1} onClick={onBack} title={t('rounds.previous')}><ArrowBackIcon /></IconButton>
-        <Typography variant="button">{t('currentRound', { round })}</Typography>
-        {
-          round < lastRound
-            ? (
-            <IconButton onClick={onForward} title={t('rounds.next')}><ArrowForwardIcon /></IconButton>
-              )
-            : (
-              <IconButton disabled={!onNewRound} onClick={onNewRound} title={t('rounds.new')} sx={{ visibility: !onNewRound ? 'hidden' : '' }}>
-                <AddIcon />
-              </IconButton>
-              )
-        }
-      </Box>
+      {
+        (typeof controls === 'undefined' || controls)
+          ? <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <IconButton disabled={round === 1} onClick={onBack} title={t('rounds.previous')}><ArrowBackIcon /></IconButton>
+          <Typography variant="button">{t('currentRound', { round })}</Typography>
+          {
+            round < lastRound
+              ? (
+              <IconButton onClick={onForward} title={t('rounds.next')}><ArrowForwardIcon /></IconButton>
+                )
+              : (
+                <IconButton disabled={!onNewRound} onClick={onNewRound} title={t('rounds.new')} sx={{ visibility: !onNewRound ? 'hidden' : '' }}>
+                  <AddIcon />
+                </IconButton>
+                )
+          }
+        </Box>
+          : <Typography variant="button">{t('currentRound', { round })}</Typography>
+      }
 
       <List>
         {
