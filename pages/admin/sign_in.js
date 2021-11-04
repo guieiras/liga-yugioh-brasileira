@@ -29,23 +29,23 @@ export default function AdminSignIn () {
     </Head>
 
     { (loading || !session) && <Container align='center' sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        justifyContent: 'center',
-        textAlign: 'center'
-      }}>
-        <div>
-          { (!loading && !session) ? login() : null }
-          <CircularProgress />
-        </div>
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100vh',
+      justifyContent: 'center',
+      textAlign: 'center'
+    }}>
+      <div>
+        { (!loading && !session) ? login() : null }
+        <CircularProgress />
+      </div>
     </Container> }
 
     { session && redirectToDashboard() }
   </>
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps ({ locale }) {
   return {
     props: {
       locale,
