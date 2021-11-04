@@ -72,6 +72,7 @@ export async function fetchCurrentSeason () {
   return query.distinct(
     'series.id as serie_id',
     'seasons.id as season_id',
+    'series.color',
     'series.name_pt',
     'series.name_en'
   ).where('seasons.current', true)
