@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
 import Typography from '@mui/material/Typography'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import HomeIcon from '@mui/icons-material/Home'
 import PeopleIcon from '@mui/icons-material/People'
 import ShieldIcon from '@mui/icons-material/Shield'
 import TodayIcon from '@mui/icons-material/Today'
@@ -26,6 +27,7 @@ import { logout } from '../../../requests/auth0'
 const drawerWidth = 240
 
 const items = [
+  { name: 'home', icon: HomeIcon, route: '/admin' },
   { name: 'players', icon: PeopleIcon, route: '/admin/players' },
   { name: 'seasons', icon: TodayIcon, route: '/admin/seasons' },
   { name: 'series', icon: ShieldIcon, route: '/admin/series' }
