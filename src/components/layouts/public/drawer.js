@@ -8,6 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
+import HelpIcon from '@mui/icons-material/Help'
 import TableChartIcon from '@mui/icons-material/TableChart'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
@@ -16,7 +17,8 @@ import Link from 'next/link'
 const drawerWidth = 240
 
 const items = [
-  { name: 'home', icon: TableChartIcon, route: '/' }
+  { name: 'home', icon: TableChartIcon, route: '/' },
+  { name: 'about', icon: HelpIcon, route: '/about' }
 ]
 
 export default function AdminDrawer ({ isDesktop, open, onClose }) {
