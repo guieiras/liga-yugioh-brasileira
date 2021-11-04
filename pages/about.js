@@ -25,9 +25,9 @@ export default function About () {
       <Typography sx={{ mt: 2 }}>{t('intro.paragraph2', { ns: 'about' })}</Typography>
 
       <iframe src='https://www.youtube.com/embed/c4MzZ0MxxJg'
-        frameborder='0'
+        frameBorder='0'
         allow='autoplay; encrypted-media'
-        allowfullscreen
+        allowFullScreen
         title='video'
         style={{ marginTop: 10, height: isDesktop ? 360 : 240, width: isDesktop ? 640 : 426 }}
       />
@@ -45,7 +45,7 @@ export default function About () {
           color="secondary"
           component="a"
           target="_blank"
-          href={"https://www.twitch.tv/prrjygo"}
+          href={'https://www.twitch.tv/prrjygo'}
           startIcon={<Image alt="" src={'/img/twitch.png'} height={24} width={24} />}
           sx={{ borderColor: 'purple', color: 'purple' }}
           variant="outlined"
@@ -56,7 +56,7 @@ export default function About () {
           color="secondary"
           component="a"
           target="_blank"
-          href={"https://www.twitch.tv/tcgnetworkoficial"}
+          href={'https://www.twitch.tv/tcgnetworkoficial'}
           startIcon={<Image alt="" src={'/img/twitch.png'} height={24} width={24} />}
           sx={{ borderColor: 'purple', color: 'purple' }}
           variant="outlined"
