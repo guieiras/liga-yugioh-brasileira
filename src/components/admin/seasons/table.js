@@ -121,7 +121,7 @@ export default function AdminSeasonsTable ({
                   <Grid item xs={5} sm={4} md={4} lg={4}>
                     <TextField
                       fullWidth
-                      onChange={e => setSlug(e.target.value)}
+                      onChange={e => setSlug(e.target.value.replace(/[^0-9a-zA-Z-]/g, ''))}
                       label={t('seasons.slug')}
                       variant="standard"
                       value={slug}
