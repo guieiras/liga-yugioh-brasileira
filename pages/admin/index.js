@@ -45,7 +45,7 @@ export default function Index ({ locale, series: json }) {
           series && <Card title={t('seasons.current')} description={t('admin.cards.seasons.current')}>
             <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
               { series.map((serie) => (
-                <NextLink passHref href={`/admin/seasons/${serie.season_id}/series/${serie.serie_id}`} key={serie.serie_id}>
+                <NextLink passHref href={`/admin/seasons/${serie.season_slug}/series/${serie.serie_slug}`} key={serie.serie_id}>
                   <Button startIcon={<ShieldIcon sx={{ color: serie.color }} />} variant="outlined">
                     { serie[`name_${locale}`]}
                   </Button>

@@ -10,6 +10,12 @@ export async function getSeason (seasonId) {
   return seasons[0]
 }
 
+export async function getSeasonBySlug (seasonSlug) {
+  const seasons = await db('seasons').select('*').where('slug', seasonSlug).limit(1)
+
+  return seasons[0]
+}
+
 export async function createSeason ({ name }) {
   const season = {
     name,
@@ -72,6 +78,8 @@ export async function fetchCurrentSeason () {
   return query.distinct(
     'series.id as serie_id',
     'seasons.id as season_id',
+    'series.slug as serie_slug',
+    'seasons.slug as season_slug',
     'series.color',
     'series.name_pt',
     'series.name_en'

@@ -40,7 +40,7 @@ export default function AdminSeasonsTable ({
   }
 
   function handleShow () {
-    onShow && onShow(this.id)
+    onShow && onShow(this)
   }
 
   function handleDelete () {

@@ -25,8 +25,8 @@ export default function SeasonsIndex ({ seasons: json }) {
       })
   }
 
-  async function showSeason (seasonId) {
-    push(`/admin/seasons/${seasonId}`)
+  async function showSeason ({ slug }) {
+    push(`/admin/seasons/${slug}`)
   }
 
   async function deleteSeason (seasonId) {

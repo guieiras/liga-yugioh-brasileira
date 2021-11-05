@@ -18,7 +18,7 @@ import PlayerSearchBar from '../../../src/components/PlayerSearchBar'
 import AdminLayout from '../../../src/components/layouts/admin'
 import { authenticate } from '../../../src/middlewares/session'
 import { getSeries } from '../../../src/repositories/series'
-import { getSeason } from '../../../src/repositories/seasons'
+import { getSeasonBySlug } from '../../../src/repositories/seasons'
 import { del, get, post } from '../../../src/requests/client'
 
 export default function AdminSeasonShow ({ data: json }) {
@@ -129,7 +129,7 @@ export default function AdminSeasonShow ({ data: json }) {
               {
                 participants[serie.id]?.length && <IconButton
                   aria-label={t('matches.manage')}
-                  onClick={() => { push(`/admin/seasons/${season.id}/series/${serie.id}`) }}
+                  onClick={() => { push(`/admin/seasons/${season.slug}/series/${serie.slug}`) }}
                   title={t('matches.manage')}
                 >
                   <VisibilityIcon />
@@ -182,7 +182,7 @@ export async function getServerSideProps (context) {
         data: serialize({
           locale,
           series: await getSeries(),
-          season: await getSeason(query.season)
+          season: await getSeasonBySlug(query.season)
         })
       }
     }
