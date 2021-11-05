@@ -30,12 +30,16 @@ export default function AdminSeasonsTable ({
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
   const [name, setName] = React.useState('')
+  const [slug, setSlug] = React.useState('')
 
   function submit (e) {
     e.preventDefault()
 
-    if (name) {
-      onCreate({ name }).then(() => { setName('') })
+    if (name && slug) {
+      onCreate({ name, slug }).then(() => {
+        setName('')
+        setSlug('')
+      })
     }
   }
 
@@ -57,6 +61,7 @@ export default function AdminSeasonsTable ({
         <TableHead>
           <TableRow>
             <TableCell>{t('seasons.name')}</TableCell>
+            <TableCell>{t('seasons.slug')}</TableCell>
             <TableCell>{t('createdAt')}</TableCell>
             <TableCell>{t('actions')}</TableCell>
           </TableRow>
@@ -68,6 +73,7 @@ export default function AdminSeasonsTable ({
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{season.name}</TableCell>
+              <TableCell>/{season.slug}</TableCell>
               <TableCell>{l(season.created_at, 'month')}</TableCell>
               <TableCell>
                 <IconButton
@@ -100,10 +106,10 @@ export default function AdminSeasonsTable ({
             </TableRow>
           ))}
           <TableRow>
-            <TableCell colSpan={3}>
+            <TableCell colSpan={4}>
               <form onSubmit={submit}>
                 <Grid container spacing={2} alignItems="center">
-                  <Grid item xs={10}>
+                  <Grid item xs={5} sm={7} md={5} lg={6}>
                     <TextField
                       fullWidth
                       onChange={e => setName(e.target.value)}
@@ -112,14 +118,23 @@ export default function AdminSeasonsTable ({
                       value={name}
                     />
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item xs={5} sm={4} md={4} lg={4}>
+                    <TextField
+                      fullWidth
+                      onChange={e => setSlug(e.target.value)}
+                      label={t('seasons.slug')}
+                      variant="standard"
+                      value={slug}
+                    />
+                  </Grid>
+                  <Grid item xs={2} sm={1} md={3} lg={2}>
                     {
                       isDesktop
                         ? (
                         <Button startIcon={<AddIcon />} type='submit'>{t('add')}</Button>
                           )
                         : (
-                        <IconButton aria-label={t('add')} title={t('add')}>
+                        <IconButton aria-label={t('add')} title={t('add')} type="submit">
                           <AddIcon />
                         </IconButton>
                           )
