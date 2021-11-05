@@ -7,8 +7,8 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import AdminLayout from '../../../../../src/components/layouts/admin'
 import { authenticate } from '../../../../../src/middlewares/session'
-import { getSerie } from '../../../../../src/repositories/series'
-import { getSeason } from '../../../../../src/repositories/seasons'
+import { getSerieBySlug } from '../../../../../src/repositories/series'
+import { getSeasonBySlug } from '../../../../../src/repositories/seasons'
 import { get, post, put } from '../../../../../src/requests/client'
 import RoundsForm from '../../../../../src/components/rounds/form'
 import RoundsPanel from '../../../../../src/components/rounds/panel'
@@ -150,8 +150,8 @@ export async function getServerSideProps (context) {
         ...(await serverSideTranslations(locale)),
         data: serialize({
           locale,
-          serie: await getSerie(query.serie),
-          season: await getSeason(query.season)
+          serie: await getSerieBySlug(query.serie),
+          season: await getSeasonBySlug(query.season)
         })
       }
     }
