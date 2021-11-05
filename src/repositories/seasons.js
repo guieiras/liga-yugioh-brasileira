@@ -16,9 +16,12 @@ export async function getSeasonBySlug (seasonSlug) {
   return seasons[0]
 }
 
-export async function createSeason ({ name }) {
+export async function createSeason ({ name, slug }) {
   const season = {
     name,
+    slug,
+    current: false,
+    hidden: false,
     created_at: new Date(),
     updated_at: new Date()
   }
