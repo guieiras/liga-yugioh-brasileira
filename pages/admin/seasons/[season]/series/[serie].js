@@ -18,8 +18,8 @@ export default function AdminSeasonMatches ({ data: json }) {
   const { data: session } = useSession()
   const [roundMatches, setRoundMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
-  const [currentRound, setCurrentRound] = React.useState(0)
-  const [lastRound, setLastRound] = React.useState(0)
+  const [currentRound, setCurrentRound] = React.useState(null)
+  const [lastRound, setLastRound] = React.useState(null)
   const [editableRound, setEditableRound] = React.useState(null)
 
   React.useEffect(() => {
@@ -106,7 +106,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       <Typography variant="h5" component="h1">{season.name} | {serie[`name_${locale}`]}</Typography>
 
       {
-        Object.keys(roundMatches).length === 0
+        Object.keys(roundMatches).length === 0 && currentRound !== 0
           ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
             <CircularProgress />
           </Paper>
