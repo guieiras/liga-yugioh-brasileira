@@ -9,7 +9,7 @@ import PublicLayout from '../../../../src/components/layouts/public'
 import RoundsPanel from '../../../../src/components/rounds/panel'
 import { get, post } from '../../../../src/requests/client'
 
-export default function SeasonSerieShow ({ seasonSlug, serieSlug }) {
+export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   const { t } = useTranslation()
   const [season, setSeason] = React.useState(null)
   const [serie, setSerie] = React.useState(null)
@@ -63,15 +63,15 @@ export default function SeasonSerieShow ({ seasonSlug, serieSlug }) {
   }
 
   return (
-    <PublicLayout title={'Rodada'}>
+    <PublicLayout title={season && serie ? `${season.name} (${serie[`name_${locale}`]})` : t('seasons.name') }>
       {
-        loading
+        Object.keys(roundMatches).length === 0
           ? <Stack direction="row" justifyContent="center" alignItems="center">
             <CircularProgress />
           </Stack>
           : <>
         <Typography variant="h5" component="h1">
-          {t('title')}
+          {season.name} | {serie[`name_${locale}`]}
         </Typography>
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid item xs={12} lg={6}>
