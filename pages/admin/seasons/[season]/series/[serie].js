@@ -16,7 +16,6 @@ import RoundsPanel from '../../../../../src/components/rounds/panel'
 export default function AdminSeasonMatches ({ data: json }) {
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
-  const [loading, setLoading] = React.useState(true)
   const [roundMatches, setRoundMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
@@ -24,7 +23,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   const [editableRound, setEditableRound] = React.useState(null)
 
   React.useEffect(() => {
-    Promise.all([getParticipations(), getRound()]).then(() => { setLoading(false) })
+    Promise.all([getParticipations(), getRound()])
   }, [])
 
   function handleNewRound () {
@@ -32,17 +31,13 @@ export default function AdminSeasonMatches ({ data: json }) {
   }
 
   async function handleBack () {
-    setLoading(true)
-    await getRound(currentRound - 1)
     setCurrentRound(currentRound - 1)
-    setLoading(false)
+    await getRound(currentRound - 1)
   }
 
   async function handleForward () {
-    setLoading(true)
-    await getRound(currentRound + 1)
     setCurrentRound(currentRound + 1)
-    setLoading(false)
+    await getRound(currentRound + 1)
   }
 
   function handleEdit () {
@@ -68,8 +63,6 @@ export default function AdminSeasonMatches ({ data: json }) {
         setCurrentRound(fetchedRound || 0)
       }
     }
-
-    if (round) { setCurrentRound(round) }
   }
 
   function cancelRound () {
@@ -113,7 +106,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       <Typography variant="h5" component="h1">{season.name} | {serie[`name_${locale}`]}</Typography>
 
       {
-        loading
+        Object.keys(roundMatches).length === 0
           ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
             <CircularProgress />
           </Paper>
@@ -128,6 +121,7 @@ export default function AdminSeasonMatches ({ data: json }) {
             />
             : <RoundsPanel
               lastRound={lastRound}
+              loading={!roundMatches[currentRound]}
               matches={roundMatches[currentRound] || []}
               onBack={handleBack}
               onEdit={handleEdit}

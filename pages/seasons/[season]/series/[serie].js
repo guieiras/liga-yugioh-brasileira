@@ -13,7 +13,6 @@ export default function SeasonSerieShow ({ seasonSlug, serieSlug }) {
   const { t } = useTranslation()
   const [season, setSeason] = React.useState(null)
   const [serie, setSerie] = React.useState(null)
-  const [loading, setLoading] = React.useState(true)
   const [roundMatches, setRoundMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
@@ -21,9 +20,7 @@ export default function SeasonSerieShow ({ seasonSlug, serieSlug }) {
 
   React.useEffect(getSeasonAndSerie, [])
   React.useEffect(() => {
-    if (serie) {
-      Promise.all([getParticipations(), getRound()]).then(() => { setLoading(false) })
-    }
+    if (serie) { Promise.all([getParticipations(), getRound()]) }
   }, [serie])
 
   async function getSeasonAndSerie () {
@@ -53,8 +50,6 @@ export default function SeasonSerieShow ({ seasonSlug, serieSlug }) {
         setCurrentRound(fetchedRound || 0)
       }
     }
-
-    if (round) { setCurrentRound(round) }
   }
 
   async function handleBack () {
