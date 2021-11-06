@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import { green, grey, red, yellow } from '@mui/material/colors'
 import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
@@ -10,6 +11,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -25,12 +27,13 @@ import RoundsEdit from './edit'
 
 export default function RoundsPanel ({
   onNewRound, matches, players, onEdit, onBack, onGameUpdate, onForward, round, lastRound, sx,
-  controls, ...props
+  controls, loading, linkSize, ...props
 }) {
   const { t } = useTranslation()
   const [editableGame, setEditableGame] = React.useState(null)
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+  const isSmallLink = linkSize === 'small' || !isDesktop
 
   async function handleGameUpdate (match, form) {
     await onGameUpdate({ id: match.id, ...form })
@@ -48,7 +51,7 @@ export default function RoundsPanel ({
     return <Box>
       {
         match.dueling_book_replay_url && (
-          isDesktop
+          !isSmallLink
             ? <Button
             component="a"
             color="info"
@@ -72,7 +75,7 @@ export default function RoundsPanel ({
       }
       {
         match.prrj_youtube_video_url && (
-          isDesktop
+          !isSmallLink
             ? <Button
             component="a"
             color="info"
@@ -93,7 +96,6 @@ export default function RoundsPanel ({
           >
             <Image alt="" src={'/img/prrj.jpg'} height={24} width={24} />
           </IconButton>
-
         )
       }
     </Box>
@@ -145,7 +147,7 @@ export default function RoundsPanel ({
     <Paper {...props} sx={{ p: 3, ...(sx || {}) }}>
       {
         (typeof controls === 'undefined' || controls)
-          ? <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          ? <Stack direction='row' justifyContent='space-between'>
           <IconButton disabled={round === 1} onClick={onBack} title={t('rounds.previous')}><ArrowBackIcon /></IconButton>
           <Typography variant="button">{t('currentRound', { round })}</Typography>
           {
@@ -159,11 +161,16 @@ export default function RoundsPanel ({
                 </IconButton>
                 )
           }
-        </Box>
+        </Stack>
           : <Typography variant="button">{t('currentRound', { round })}</Typography>
       }
 
-      <List>
+      {
+        loading
+          ? <Stack alignItems="center" sx={{ p: 2 }}>
+            <CircularProgress />
+          </Stack>
+          : <List>
         {
           matches.map((match) => (
             <ListItem key={match.id} sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -190,6 +197,7 @@ export default function RoundsPanel ({
           ))
         }
       </List>
+      }
       {
         onEdit && !editableGame && <Box sx={{ textAlign: 'right' }}>
           <IconButton role="button" onClick={onEdit} title={t('matches.manage')}>
