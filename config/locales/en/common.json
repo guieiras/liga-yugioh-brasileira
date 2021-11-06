@@ -26,7 +26,7 @@
   "players.state": "State",
   "players.konamiId": "Konami ID",
   "public.drawer.about": "About League",
-  "public.drawer.home": "Home",
+  "public.drawer.home": "Current season",
   "matches.analysis": "PRRJ analysis",
   "matches.analysis_url": "PRRJ analysis URL",
   "matches.edit": "Edit match",
