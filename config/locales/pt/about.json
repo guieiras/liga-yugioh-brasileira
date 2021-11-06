@@ -1,8 +1,8 @@
 {
   "title": "Sobre a Liga Yu-Gi-Oh! Brasileira",
-  "intro.paragraph1": "A Liga Yu-Gi-Oh! Brasileira é uma parceria da PRRJCARDS e da TCG Network com o objetivo de criar uma comunidade competitiva nacional a longo prazo.",
-  "intro.paragraph2": "Acompanhe o vídeo sobre objetivos, participantes e regras.",
-  "follow": "Assista aos jogos",
-  "follow.paragraph": "Siga os canais oficiais na Twitch e acompanhe as análises dos jogos e partidas ao vivo",
+  "intro.paragraph1": "A Liga Yu-Gi-Oh! Brasileira é uma parceria da PRRJCARDS e da TCG Network com o objetivo de fortalecer a comunidade competitiva do país.",
+  "intro.paragraph2": "Assista ao vídeo abaixo para entender os objetivos, as regras e os critérios de classificação:",
+  "follow": "Como assistir aos jogos?",
+  "follow.paragraph": "Siga os canais oficiais na Twitch e acompanhe as análises dos jogos e partidas ao vivo:",
   "twitch.channel": "{{channel}} na Twitch"
 }

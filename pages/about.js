@@ -16,7 +16,7 @@ export default function About () {
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
-    <PublicLayout index="about" title={t('about.title')}>
+    <PublicLayout index="about" title={t('title', { ns: 'about' })}>
       <Typography variant="h5" component="h1">
         {t('title', { ns: 'about' })}
       </Typography>
