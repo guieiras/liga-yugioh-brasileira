@@ -19,7 +19,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   const [players, setPlayers] = React.useState({})
   const [playerNames, setPlayerNames] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
-  const [lastRound, setLastRound] = React.useState(0)
+  const [lastRound, setLastRound] = React.useState(null)
   const [standings, setStandings] = React.useState(null)
 
   React.useEffect(getSeasonAndSerie, [])
@@ -75,7 +75,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   return (
     <PublicLayout title={season && serie ? `${season.name} (${serie[`name_${locale}`]})` : t('seasons.name') }>
       {
-        Object.keys(roundMatches).length === 0
+        Object.keys(roundMatches).length === 0 && lastRound !== 0
           ? <Stack direction="row" justifyContent="center" alignItems="center">
             <CircularProgress />
           </Stack>
