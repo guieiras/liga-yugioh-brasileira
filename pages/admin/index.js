@@ -54,8 +54,8 @@ export default function Index ({ locale, series: json }) {
             </Stack>
           </Card>
         }
-        <Card title={t('players')} description={t('admin.cards.players')} href="admin/players" />
-        <Card title={t('seasons')} description={t('admin.cards.seasons')} href="admin/seasons" />
+        <Card title={t('players')} description={t('admin.cards.players')} href="/admin/players" />
+        <Card title={t('seasons')} description={t('admin.cards.seasons')} href="/admin/seasons" />
       </Stack>
     </AdminLayout>
   )

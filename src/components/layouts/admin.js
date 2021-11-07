@@ -1,11 +1,12 @@
 import React from 'react'
+import NextLink from 'next/link'
 import Head from 'next/head'
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
 import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -37,9 +38,11 @@ export default function AdminLayout ({ children, index, title }) {
           >
             <MenuIcon />
           </IconButton> }
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            { t('title') }
-          </Typography>
+          <NextLink passHref href='/admin'>
+            <Link variant="h6" underline="none" sx={{ color: 'white' }}>
+              {t('title')}
+            </Link>
+          </NextLink>
         </Toolbar>
       </AppBar>
       <AdminDrawer open={isOpen} onClose={() => setIsOpen(false)} isDesktop={isDesktop} />

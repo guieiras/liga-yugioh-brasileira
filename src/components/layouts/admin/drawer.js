@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import HomeIcon from '@mui/icons-material/Home'
 import PeopleIcon from '@mui/icons-material/People'
+import PublicIcon from '@mui/icons-material/Public'
 import ShieldIcon from '@mui/icons-material/Shield'
 import TodayIcon from '@mui/icons-material/Today'
 import { useTranslation } from 'next-i18next'
@@ -28,7 +29,8 @@ const items = [
   { name: 'home', icon: HomeIcon, route: '/admin' },
   { name: 'players', icon: PeopleIcon, route: '/admin/players' },
   { name: 'seasons', icon: TodayIcon, route: '/admin/seasons' },
-  { name: 'series', icon: ShieldIcon, route: '/admin/series' }
+  { name: 'series', icon: ShieldIcon, route: '/admin/series' },
+  { name: 'public', icon: PublicIcon, route: '/' }
 ]
 
 async function exit () {

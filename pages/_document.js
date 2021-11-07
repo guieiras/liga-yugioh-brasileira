@@ -11,7 +11,7 @@ export default class AppDocument extends Document {
       <Html lang={this.props.locale}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <meta name="description" content={meta[this.props.locale].description} />
+          <meta name="description" content={(meta[this.props.locale] || meta.pt).description} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
