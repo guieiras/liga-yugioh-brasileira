@@ -1,17 +1,15 @@
 import React from 'react'
 
-import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
 import Drawer from '@mui/material/Drawer'
-import Toolbar from '@mui/material/Toolbar'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import ListSubheader from '@mui/material/ListSubheader'
+import Stack from '@mui/material/Stack'
+import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import HomeIcon from '@mui/icons-material/Home'
@@ -55,17 +53,12 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
   >
     <Toolbar />
     <Box sx={{ overflow: 'auto' }}>
-      { session && <Card variant="outlined">
-        <CardContent sx={{ display: 'flex' }}>
-          <Avatar alt={t('photoAlt')} src={session?.user?.image} />
-          <Box sx={{ ml: 1 }}>
-            <Typography variant="button" component="p">{session.user.name}</Typography>
-            <Button size='small' startIcon={<ExitToAppIcon />} variant='outlined' sx={{ mt: 1 }} onClick={exit}>
-              { t('signOut') }
-            </Button>
-          </Box>
-        </CardContent>
-      </Card> }
+      { session && <Stack p={2}>
+        <Typography variant="button" component="p">{session.user.name}</Typography>
+        <Button size='small' startIcon={<ExitToAppIcon />} variant='outlined' sx={{ mt: 1 }} onClick={exit}>
+          { t('signOut') }
+        </Button>
+      </Stack> }
       <List component="nav">
         <ListSubheader>
           { t('drawer.title') }
