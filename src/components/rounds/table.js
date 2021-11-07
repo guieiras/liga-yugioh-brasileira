@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Box from '@mui/material/Box'
 import { blue, green, orange, red } from '@mui/material/colors'
 import Paper from '@mui/material/Paper'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -12,6 +14,9 @@ import { useTranslation } from 'next-i18next'
 import states from '../states'
 
 export default function RoundsTable ({ breakpoints, players, table }) {
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+
   const { t } = useTranslation()
   const breakpointColors = {
     blue: blue[400],
@@ -34,7 +39,7 @@ export default function RoundsTable ({ breakpoints, players, table }) {
   }
 
   return <TableContainer component={Paper}>
-    <Table>
+    <Table size={isDesktop ? '' : 'small'}>
       <TableHead>
         <TableRow>
           <TableCell aria-label={t('rounds.position')}></TableCell>

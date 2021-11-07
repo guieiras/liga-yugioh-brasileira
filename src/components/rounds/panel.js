@@ -177,7 +177,7 @@ export default function RoundsPanel ({
               <MatchItem match={match}>
                 <Grid container>
                   <Grid item xs={4} sx={{ textAlign: 'right' }}>
-                    <Typography sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
+                    <Typography variant={isDesktop ? 'body1' : 'caption'} sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
                   </Grid>
                   <Grid item xs={1} sx={{ textAlign: 'right' }}>
                     <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 1), height: '100%' }} />
@@ -189,7 +189,7 @@ export default function RoundsPanel ({
                     <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 2), height: '100%' }} />
                   </Grid>
                   <Grid item xs={4} sx={{ textAlign: 'left' }}>
-                    <Typography sx={{ p: 1 }}>{players[match.away_player_id]}</Typography>
+                    <Typography variant={isDesktop ? 'body1' : 'caption'} sx={{ p: 1 }}>{players[match.away_player_id]}</Typography>
                   </Grid>
                 </Grid>
               </MatchItem>
