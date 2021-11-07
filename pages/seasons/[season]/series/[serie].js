@@ -21,10 +21,15 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   const [currentRound, setCurrentRound] = React.useState(0)
   const [lastRound, setLastRound] = React.useState(null)
   const [standings, setStandings] = React.useState(null)
+  const [breakpoints, setBreakpoints] = React.useState([])
 
   React.useEffect(getSeasonAndSerie, [])
   React.useEffect(() => {
-    if (serie) { Promise.all([getParticipations(), getRound(), getSwissStandings()]) }
+    if (serie) {
+      Promise.all(
+        [getParticipations(), getRound(), getSwissStandings(), getBreakpoints()]
+      )
+    }
   }, [serie])
 
   async function getSeasonAndSerie () {
@@ -62,6 +67,10 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
     setStandings(generateStandings(table))
   }
 
+  async function getBreakpoints () {
+    setBreakpoints(await get(`seasons/${season.id}/series/${serie.id}/breakpoints`))
+  }
+
   async function handleBack () {
     setCurrentRound(currentRound - 1)
     await getRound(currentRound - 1)
@@ -86,7 +95,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid item xs={12} lg={6}>
             { standings
-              ? <RoundsTable players={players} table={standings} />
+              ? <RoundsTable players={players} table={standings} breakpoints={breakpoints} />
               : <CircularProgress /> }
           </Grid>
           <Grid item xs={12} lg={6}>

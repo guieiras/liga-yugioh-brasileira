@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Box from '@mui/material/Box'
+import { blue, green, orange, red } from '@mui/material/colors'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,8 +11,27 @@ import TableRow from '@mui/material/TableRow'
 import { useTranslation } from 'next-i18next'
 import states from '../states'
 
-export default function RoundsTable ({ players, table }) {
+export default function RoundsTable ({ breakpoints, players, table }) {
   const { t } = useTranslation()
+  const breakpointColors = {
+    blue: blue[400],
+    green: green[400],
+    orange: orange[400],
+    red: red[400]
+  }
+
+  function breakpoint (index) {
+    const breakpoint = breakpoints.filter((bp) => (
+      index >= bp.initial_rank && index <= bp.final_rank
+    ))[0]
+
+    return breakpoint
+      ? {
+          style: { borderLeft: `8px solid ${breakpointColors[breakpoint.color]}` },
+          title: t(`breakpoints.${breakpoint.caption}`)
+        }
+      : {}
+  }
 
   return <TableContainer component={Paper}>
     <Table>
@@ -26,7 +46,9 @@ export default function RoundsTable ({ players, table }) {
       <TableBody>
         {table.map((row, index) => (
           <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-            <TableCell>{!index || row.tiebreak !== table[index - 1].tiebreak ? index + 1 : null}</TableCell>
+            <TableCell {...breakpoint(index)}>
+              {!index || row.tiebreak !== table[index - 1].tiebreak ? index + 1 : null}
+            </TableCell>
             <TableCell component="th" scope="row">
               <Box component='span' sx={{ mr: 1 }} title={states[players[row.id].state]}>
                 <Image alt="" src={`/img/flags/${players[row.id].state.toUpperCase()}.png`} height={11} width={17} />
