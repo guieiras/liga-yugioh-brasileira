@@ -45,6 +45,7 @@
   "rounds.next": "Ver próxima rodada",
   "rounds.none": "Nenhuma rodada cadastrada",
   "rounds.points": "Pontuação",
+  "rounds.points.xs": "P",
   "rounds.position": "Classificação",
   "rounds.previous": "Ver rodada anterior",
   "rounds.tiebreak": "Desempate",

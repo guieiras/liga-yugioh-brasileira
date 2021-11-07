@@ -44,7 +44,7 @@ export default function RoundsTable ({ breakpoints, players, table }) {
         <TableRow>
           <TableCell aria-label={t('rounds.position')}></TableCell>
           <TableCell>{t('player')}</TableCell>
-          <TableCell align="right">{t('rounds.points')}</TableCell>
+          <TableCell align="right">{isDesktop ? t('rounds.points') : t('rounds.points.xs')}</TableCell>
           <TableCell align="right">{t('rounds.tiebreak')}</TableCell>
         </TableRow>
       </TableHead>

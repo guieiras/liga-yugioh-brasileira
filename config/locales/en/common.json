@@ -45,6 +45,7 @@
   "rounds.next": "Go to next round",
   "rounds.none": "No rounds were registered",
   "rounds.points": "Points",
+  "rounds.points.xs": "P",
   "rounds.position": "Position",
   "rounds.previous": "Go to previous round",
   "rounds.tiebreak": "Tiebreak",
