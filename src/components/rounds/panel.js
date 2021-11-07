@@ -144,7 +144,7 @@ export default function RoundsPanel ({
   }
 
   return (
-    <Paper {...props} sx={{ p: 3, ...(sx || {}) }}>
+    <Paper {...props} sx={{ p: 2, ...(sx || {}) }}>
       {
         (typeof controls === 'undefined' || controls)
           ? <Stack direction='row' justifyContent='space-between'>
@@ -176,20 +176,24 @@ export default function RoundsPanel ({
             <ListItem key={match.id} sx={{ display: 'flex', flexDirection: 'column' }}>
               <MatchItem match={match}>
                 <Grid container>
-                  <Grid item xs={4} sx={{ textAlign: 'right' }}>
-                    <Typography variant={isDesktop ? 'body1' : 'caption'} sx={{ p: 1 }}>{players[match.home_player_id]}</Typography>
+                  <Grid item xs={4} sx={{ display: 'table', textAlign: isDesktop ? 'right' : 'left' }}>
+                    <Typography style={{ display: 'table-cell', paddingRight: 4, verticalAlign: 'middle' }} variant={isDesktop ? 'body1' : 'caption'}>
+                      {players[match.home_player_id]}
+                    </Typography>
                   </Grid>
                   <Grid item xs={1} sx={{ textAlign: 'right' }}>
-                    <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 1), height: '100%' }} />
+                    <CircleTwoToneIcon fontSize={ isDesktop ? 'medium' : 'small'} sx={{ color: matchWinner(match, 1), height: '100%' }} />
                   </Grid>
                   <Grid item xs={2} sx={{ textAlign: 'center' }}>
                     <ClearIcon sx={{ height: '100%' }} />
                   </Grid>
                   <Grid item xs={1} sx={{ textAlign: 'left' }}>
-                    <CircleTwoToneIcon size="big" sx={{ color: matchWinner(match, 2), height: '100%' }} />
+                    <CircleTwoToneIcon fontSize={ isDesktop ? 'medium' : 'small'} sx={{ color: matchWinner(match, 2), height: '100%' }} />
                   </Grid>
-                  <Grid item xs={4} sx={{ textAlign: 'left' }}>
-                    <Typography variant={isDesktop ? 'body1' : 'caption'} sx={{ p: 1 }}>{players[match.away_player_id]}</Typography>
+                  <Grid item xs={4} sx={{ display: 'table', textAlign: isDesktop ? 'left' : 'right' }}>
+                    <Typography style={{ display: 'table-cell', paddingLeft: 4, verticalAlign: 'middle' }} variant={isDesktop ? 'body1' : 'caption'}>
+                      {players[match.away_player_id]}
+                    </Typography>
                   </Grid>
                 </Grid>
               </MatchItem>
