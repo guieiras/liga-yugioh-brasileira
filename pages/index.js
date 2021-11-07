@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Link from '../src/components/Link'
 import { get, post } from '../src/requests/client'
@@ -49,12 +50,12 @@ export default function Index ({ locale }) {
     <PublicLayout index="home" title={t('title')}>
       {
         loading
-          ? <Box sx={{ alignItems: 'center', display: 'flex', height: '100%', justifyContent: 'center', width: '100%' }}>
+          ? <Stack alignItems='center' justifyContent='center'>
             <CircularProgress />
-          </Box>
+          </Stack>
           : seasons.map((season) => (
             <Box sx={{ p: 2, mt: 2 }} key={`${season.season_id}.${season.serie_id}`}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Stack direction="row" justifyContent="space-between">
                 <Typography variant="h5" component="h2">
                   {season[`name_${locale}`]}
                 </Typography>
@@ -64,7 +65,7 @@ export default function Index ({ locale }) {
                     {t('series.show')}
                   </Link>
                 }
-              </Box>
+              </Stack>
               {
                 season.matches && (season.matches.length > 0
                   ? <RoundsPanel

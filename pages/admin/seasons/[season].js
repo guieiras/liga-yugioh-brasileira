@@ -2,13 +2,13 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useSession } from 'next-auth/react'
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -122,7 +122,7 @@ export default function AdminSeasonShow ({ data: json }) {
       {
         series.map((serie) => <Card sx={{ mt: 3 }} key={serie.id}>
           <CardContent>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Stack direction="row" justifyContent="space-between">
               <Typography variant="h6" component="h2" sx={{ color: serie.color }}>
                 {serie[`name_${locale}`]}
               </Typography>
@@ -135,7 +135,7 @@ export default function AdminSeasonShow ({ data: json }) {
                   <VisibilityIcon />
                 </IconButton>
               }
-            </Box>
+            </Stack>
 
             <PlayerSearchBar
               onChange={handleSearch(serie.id)}

@@ -1,17 +1,17 @@
 import React from 'react'
 import Head from 'next/head'
-import AdminDrawer from './admin/drawer'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
 import AppBar from '@mui/material/AppBar'
+import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import MenuIcon from '@mui/icons-material/Menu'
 import { useTranslation } from 'next-i18next'
+import AdminDrawer from './admin/drawer'
 
 export default function AdminLayout ({ children, index, title }) {
   const { t } = useTranslation()
@@ -20,7 +20,7 @@ export default function AdminLayout ({ children, index, title }) {
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Stack direction="row">
       <Head>
         <title>{title || t(`admin.drawer.${index}`)} | {t('title')}</title>
       </Head>
@@ -47,6 +47,6 @@ export default function AdminLayout ({ children, index, title }) {
         <Toolbar />
         { children }
       </Container>
-    </Box>
+    </Stack>
   )
 }
