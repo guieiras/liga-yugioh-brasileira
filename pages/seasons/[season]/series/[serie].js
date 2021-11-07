@@ -8,6 +8,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import PublicLayout from '../../../../src/components/layouts/public'
 import RoundsPanel from '../../../../src/components/rounds/panel'
 import { get, post } from '../../../../src/requests/client'
+import generateStandings from '../../../../src/helpers/standings'
+import RoundsTable from '../../../../src/components/rounds/table'
 
 export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   const { t } = useTranslation()
@@ -15,12 +17,14 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
   const [serie, setSerie] = React.useState(null)
   const [roundMatches, setRoundMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
+  const [playerNames, setPlayerNames] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(0)
   const [lastRound, setLastRound] = React.useState(0)
+  const [standings, setStandings] = React.useState(null)
 
   React.useEffect(getSeasonAndSerie, [])
   React.useEffect(() => {
-    if (serie) { Promise.all([getParticipations(), getRound()]) }
+    if (serie) { Promise.all([getParticipations(), getRound(), getSwissStandings()]) }
   }, [serie])
 
   async function getSeasonAndSerie () {
@@ -35,7 +39,8 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
       { participations: [{ serie_id: serie.id, season_id: season.id }] }
     )
 
-    setPlayers(Object.fromEntries(results.map((result) => [result.id, result.name])))
+    setPlayerNames(Object.fromEntries(results.map((result) => [result.id, result.name])))
+    setPlayers(Object.fromEntries(results.map((result) => [result.id, result])))
   }
 
   async function getRound (round, force = false) {
@@ -50,6 +55,11 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
         setCurrentRound(fetchedRound || 0)
       }
     }
+  }
+
+  async function getSwissStandings () {
+    const table = await get('standings', { season_id: season.id, serie_id: serie.id })
+    setStandings(generateStandings(table))
   }
 
   async function handleBack () {
@@ -75,7 +85,9 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
         </Typography>
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid item xs={12} lg={6}>
-
+            { standings
+              ? <RoundsTable players={players} table={standings} />
+              : <CircularProgress /> }
           </Grid>
           <Grid item xs={12} lg={6}>
             <RoundsPanel
@@ -85,7 +97,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
               matches={roundMatches[currentRound] || []}
               onBack={handleBack}
               onForward={handleForward}
-              players={players}
+              players={playerNames}
               round={currentRound}
             />
           </Grid>
