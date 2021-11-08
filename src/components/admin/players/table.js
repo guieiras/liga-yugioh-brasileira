@@ -61,6 +61,7 @@ export default function AdminPlayersTable ({ onDelete, players, ...props }) {
                   aria-label={t('delete')}
                   color="error"
                   component="span"
+                  disabled={!player.deletable}
                   onClick={handleDelete.bind(player)}
                   title={t('delete')}
                 >

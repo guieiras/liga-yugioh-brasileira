@@ -10,5 +10,5 @@ export default withAuthentication((req, res) => {
 async function create (req, res) {
   const season = await createSeason({ name: req.body.name, slug: req.body.slug })
 
-  res.send(season)
+  res.send({ ...season, deletable: true })
 }

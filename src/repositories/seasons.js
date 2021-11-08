@@ -1,7 +1,16 @@
 import db from '../database'
 
 export async function getSeasons () {
-  return db('seasons').select('*').orderBy('created_at')
+  const seasonFields = [
+    'seasons.id', 'seasons.name', 'seasons.slug',
+    'seasons.created_at', 'seasons.updated_at'
+  ]
+
+  return db('seasons')
+    .select(...seasonFields, db.raw('count(seasons_participations.player_id) = 0 as deletable'))
+    .leftJoin('seasons_participations', 'seasons.id', 'seasons_participations.season_id')
+    .groupBy(...seasonFields)
+    .orderBy('created_at')
 }
 
 export async function getSeason (seasonId) {

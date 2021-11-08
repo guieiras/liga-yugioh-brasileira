@@ -1,7 +1,16 @@
 import db from '../database'
 
 export async function getPlayers () {
-  return db('players').select('*').orderBy('name')
+  const playerFields = [
+    'players.id', 'players.name', 'players.konami_id', 'players.state',
+    'players.created_at', 'players.updated_at'
+  ]
+
+  return db('players')
+    .select(...playerFields, db.raw('count(seasons_participations.season_id) = 0 as deletable'))
+    .leftJoin('seasons_participations', 'players.id', 'seasons_participations.player_id')
+    .groupBy(...playerFields)
+    .orderBy('name')
 }
 
 export async function searchPlayers ({ name, id, nid }) {
@@ -40,7 +49,7 @@ export async function createPlayer ({ name, state, konamiId }) {
 
   const [id] = await db('players').insert(player)
 
-  return { id, ...player }
+  return { id, ...player, deletable: true }
 }
 
 export async function deletePlayer (playerId) {

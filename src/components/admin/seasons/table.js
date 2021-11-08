@@ -97,6 +97,7 @@ export default function AdminSeasonsTable ({
                   aria-label={t('delete')}
                   color="error"
                   component="span"
+                  disabled={!season.deletable}
                   onClick={handleDelete.bind(season)}
                   title={t('delete')}
                 >
