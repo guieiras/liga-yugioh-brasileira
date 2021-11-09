@@ -42,6 +42,7 @@
   "matches.replay_url": "Replay URL",
   "matches.winner": "Winner",
   "participations": "Participations",
+  "participations.none": "No players registered on this serie.",
   "rounds.first": "Add first round",
   "rounds.new": "New round",
   "rounds.next": "Go to next round",

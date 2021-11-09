@@ -1,8 +1,10 @@
 import React from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import { useSession } from 'next-auth/react'
 import { deserialize, serialize } from 'superjson'
 import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import AdminLayout from '../../../../../src/components/layouts/admin'
@@ -12,8 +14,10 @@ import { getSeasonBySlug } from '../../../../../src/repositories/seasons'
 import { get, post, put } from '../../../../../src/requests/client'
 import RoundsForm from '../../../../../src/components/rounds/form'
 import RoundsPanel from '../../../../../src/components/rounds/panel'
+import Button from '../../../../../src/components/Button'
 
 export default function AdminSeasonMatches ({ data: json }) {
+  const { t } = useTranslation()
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
   const [roundMatches, setRoundMatches] = React.useState({})
@@ -106,12 +110,28 @@ export default function AdminSeasonMatches ({ data: json }) {
       <Typography variant="h5" component="h1">{season.name} | {serie[`name_${locale}`]}</Typography>
 
       {
-        Object.keys(roundMatches).length === 0 && currentRound !== 0
-          ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
+        Object.keys(players).length === 0
+          ? <Alert
+            action={
+              <Button
+              color="inherit"
+              href={`/admin/seasons/${season.slug}/series/${serie.slug}/participations`}
+              size="small"
+              >
+                {t('add')}
+              </Button>
+            }
+            severity="warning"
+            sx={{ mt: 2 }}
+          >
+            {t('participations.none')}
+          </Alert>
+          : Object.keys(roundMatches).length === 0 && currentRound !== 0
+            ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
             <CircularProgress />
           </Paper>
-          : editableRound !== null
-            ? <RoundsForm
+            : editableRound !== null
+              ? <RoundsForm
               onCancel={cancelRound}
               onSubmit={saveRound}
               matches={roundMatches[editableRound]}
@@ -119,7 +139,7 @@ export default function AdminSeasonMatches ({ data: json }) {
               round={editableRound}
               sx={{ mt: 2 }}
             />
-            : <RoundsPanel
+              : <RoundsPanel
               lastRound={lastRound}
               loading={!roundMatches[currentRound]}
               matches={roundMatches[currentRound] || []}
