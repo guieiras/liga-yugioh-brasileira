@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -8,10 +7,10 @@ import ShieldIcon from '@mui/icons-material/Shield'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import NextLink from 'next/link'
 import { deserialize, serialize } from 'superjson'
 import AdminLayout from '../../src/components/layouts/admin'
 import { authenticate } from '../../src/middlewares/session'
+import Button from '../../src/components/Button'
 import Link from '../../src/components/Link'
 import { fetchCurrentSeason } from '../../src/repositories/seasons'
 
@@ -45,11 +44,14 @@ export default function Index ({ locale, series: json }) {
           series && <Card title={t('seasons.current')} description={t('admin.cards.seasons.current')}>
             <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
               { series.map((serie) => (
-                <NextLink passHref href={`/admin/seasons/${serie.season_slug}/series/${serie.serie_slug}`} key={serie.serie_id}>
-                  <Button startIcon={<ShieldIcon sx={{ color: serie.color }} />} variant="outlined">
-                    { serie[`name_${locale}`]}
-                  </Button>
-                </NextLink>
+                <Button
+                  href={`/admin/seasons/${serie.season_slug}/series/${serie.serie_slug}`}
+                  key={serie.serie_id}
+                  startIcon={<ShieldIcon sx={{ color: serie.color }} />}
+                  variant="outlined"
+                >
+                  { serie[`name_${locale}`]}
+                </Button>
               )) }
             </Stack>
           </Card>

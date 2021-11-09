@@ -1,11 +1,9 @@
 import React from 'react'
-import NextLink from 'next/link'
 import Head from 'next/head'
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
 import IconButton from '@mui/material/IconButton'
-import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import { useTheme } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
@@ -13,6 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useTranslation } from 'next-i18next'
 import PublicDrawer from './public/drawer'
+import Link from '../Link'
 
 export default function PublicLayout ({ children, index, title }) {
   const { t } = useTranslation()
@@ -38,11 +37,9 @@ export default function PublicLayout ({ children, index, title }) {
           >
             <MenuIcon />
           </IconButton>}
-          <NextLink passHref href='/'>
-            <Link variant="h6" underline="none" sx={{ color: 'white' }}>
-              {t('title')}
-            </Link>
-          </NextLink>
+          <Link href="/" variant="h6" underline="none" sx={{ color: 'white' }}>
+            {t('title')}
+          </Link>
         </Toolbar>
       </AppBar>
       <PublicDrawer open={isOpen} onClose={() => setIsOpen(false)} isDesktop={isDesktop} />

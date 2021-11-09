@@ -40,7 +40,7 @@ async function exit () {
 
 export default function AdminDrawer ({ isDesktop, open, onClose }) {
   const { t } = useTranslation()
-  const router = useRouter()
+  const { pathname } = useRouter()
   const { data: session } = useSession()
 
   return <Drawer
@@ -68,11 +68,7 @@ export default function AdminDrawer ({ isDesktop, open, onClose }) {
         {
           items.map(({ name, icon: Icon, route }) => (
             <Link passHref href={route} key={name}>
-              <ListItemButton
-              component='a'
-              onClick={() => router.push(route)}
-              selected={router.pathname === route}
-              >
+              <ListItemButton component='a' selected={pathname === route}>
                 <ListItemIcon><Icon /></ListItemIcon>
                 <ListItemText primary={t(`admin.drawer.${name}`)} />
               </ListItemButton>
