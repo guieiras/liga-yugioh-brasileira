@@ -39,7 +39,7 @@ export async function createBatchMatches ({ seasonId, serieId, round, playoff, m
           created_at: new Date(),
           updated_at: new Date()
         }
-        const [id] = await transaction('matches').insert(matchAttributes)
+        const [id] = await transaction('matches').returning('id').insert(matchAttributes)
 
         savedResults.push({ id, ...matchAttributes })
       }))

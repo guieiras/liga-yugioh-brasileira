@@ -35,7 +35,7 @@ export async function createSeason ({ name, slug }) {
     updated_at: new Date()
   }
 
-  const [id] = await db('seasons').insert(season)
+  const [id] = await db('seasons').returning('id').insert(season)
 
   return { id, ...season }
 }

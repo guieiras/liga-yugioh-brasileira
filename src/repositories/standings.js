@@ -1,16 +1,25 @@
 import db from '../database'
 
 export async function getSwissStandings ({ seasonId, serieId }) {
-  const [result] = await db.raw(`
+  const { rows } = await db.raw(`
     SELECT sp.player_id player_id,
-      GROUP_CONCAT(
-        IF(sp.player_id = m.home_player_id AND m.winner = 1, m.away_player_id, IF(sp.player_id = m.away_player_id AND m.winner = 2, m.home_player_id, NULL))
+      string_agg(
+        CASE WHEN (sp.player_id = m.home_player_id AND m.winner = 1) THEN m.away_player_id::character varying
+             WHEN (sp.player_id = m.away_player_id AND m.winner = 2) THEN m.home_player_id::character varying
+             ELSE NULL
+             end, ','
       ) wins,
-      GROUP_CONCAT(
-        IF(sp.player_id = m.home_player_id AND m.winner = 0, m.away_player_id, IF(sp.player_id = m.away_player_id AND m.winner = 0, m.home_player_id, NULL))
+      string_agg(
+        CASE WHEN (sp.player_id = m.home_player_id AND m.winner = 0) THEN m.away_player_id::character varying
+             WHEN (sp.player_id = m.away_player_id AND m.winner = 0) THEN m.home_player_id::character varying
+             ELSE NULL
+             end, ','
       ) draws,
-      GROUP_CONCAT(
-        IF(sp.player_id = m.home_player_id AND m.winner = 2, m.away_player_id, IF(sp.player_id = m.away_player_id AND m.winner = 1, m.home_player_id, NULL))
+      string_agg(
+        CASE WHEN (sp.player_id = m.home_player_id AND m.winner = 2) THEN m.away_player_id::character varying
+             WHEN (sp.player_id = m.away_player_id AND m.winner = 1) THEN m.home_player_id::character varying
+             ELSE NULL
+             end, ','
       ) losses
     FROM seasons_participations sp
     LEFT JOIN matches m
@@ -24,7 +33,7 @@ export async function getSwissStandings ({ seasonId, serieId }) {
   `, { seasonId, serieId })
 
   return Object.fromEntries(
-    result.map(({ player_id: playerId, wins, draws, losses }) => ([
+    rows.map(({ player_id: playerId, wins, draws, losses }) => ([
       playerId,
       {
         wins: wins?.split(',').map((n) => parseInt(n)) || [],

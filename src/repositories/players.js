@@ -47,7 +47,7 @@ export async function createPlayer ({ name, state, konamiId }) {
     updated_at: new Date()
   }
 
-  const [id] = await db('players').insert(player)
+  const [id] = await db('players').returning('id').insert(player)
 
   return { id, ...player, deletable: true }
 }
