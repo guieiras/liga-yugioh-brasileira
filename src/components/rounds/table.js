@@ -19,6 +19,7 @@ export default function RoundsTable ({ breakpoints, players, table }) {
 
   const { t } = useTranslation()
   const breakpointColors = {
+    default: 'white',
     blue: blue[400],
     green: green[400],
     orange: orange[400],
@@ -30,12 +31,10 @@ export default function RoundsTable ({ breakpoints, players, table }) {
       index >= bp.initial_rank && index <= bp.final_rank
     ))[0]
 
-    return breakpoint
-      ? {
-          style: { borderLeft: `8px solid ${breakpointColors[breakpoint.color]}` },
-          title: t(`breakpoints.${breakpoint.caption}`)
-        }
-      : {}
+    return {
+      style: { borderLeft: `8px solid ${breakpointColors[breakpoint?.color || 'default']}` },
+      title: breakpoint ? t(`breakpoints.${breakpoint.caption}`) : null
+    }
   }
 
   return <TableContainer component={Paper}>
