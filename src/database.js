@@ -1,23 +1,12 @@
 import Knex from 'knex'
-
-function createConnection () {
-  return Knex({
-    client: 'pg',
-    connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false }
-    }
-  })
-}
+import knexOptions from '../knexfile'
 
 let database
 
 if (process.env.NODE_ENV === 'production') {
-  database = createConnection()
+  database = Knex(knexOptions)
 } else {
-  if (!global.database) {
-    global.database = createConnection()
-  }
+  if (!global.database) { global.database = Knex(knexOptions) }
 
   database = global.database
 }
