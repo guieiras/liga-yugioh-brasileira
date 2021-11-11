@@ -126,7 +126,8 @@ export default function AdminSeasonMatches ({ data: json }) {
           >
             {t('participations.none')}
           </Alert>
-          : Object.keys(roundMatches).length === 0 && currentRound !== 0
+          : <>
+          { Object.keys(roundMatches).length === 0 && currentRound !== 0
             ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
             <CircularProgress />
           </Paper>
@@ -135,8 +136,9 @@ export default function AdminSeasonMatches ({ data: json }) {
               onCancel={cancelRound}
               onSubmit={saveRound}
               matches={roundMatches[editableRound]}
+              matchCount={Math.floor(Object.keys(players).length / 2)}
               players={players}
-              round={editableRound}
+              title={t('currentRound', { round: editableRound })}
               sx={{ mt: 2 }}
             />
               : <RoundsPanel
@@ -151,7 +153,8 @@ export default function AdminSeasonMatches ({ data: json }) {
               players={players}
               round={currentRound}
               sx={{ mt: 2 }}
-            />
+            /> }
+          </>
       }
     </AdminLayout>
   )

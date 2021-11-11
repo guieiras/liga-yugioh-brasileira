@@ -12,10 +12,11 @@ import Typography from '@mui/material/Typography'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useTranslation } from 'next-i18next'
 
-export default function RoundsForm ({ matches, round, onCancel, onSubmit, players, sx, ...props }) {
+export default function RoundsForm ({ matches, matchCount, title, onCancel, onSubmit, players, sx, ...props }) {
   const { t } = useTranslation()
   const [selectedPlayers, setSelectedPlayers] = React.useState([])
   const [options, setOptions] = React.useState([])
+  const count = matchCount || matches.count
 
   React.useEffect(() => {
     setOptions(Object.keys(players).sort((a, b) => (
@@ -72,17 +73,17 @@ export default function RoundsForm ({ matches, round, onCancel, onSubmit, player
   }
 
   function readyToSubmit () {
-    return options.length - selectedPlayers.filter((v) => v).length === options.length % 2
+    return 2 * count - selectedPlayers.filter((v) => v).length === 0
   }
 
   return (
     <Paper component='form' {...props} sx={{ p: 3, ...(sx || {}) }}>
       <Typography variant="button" component="p" sx={{ textAlign: 'center' }}>
-        {t('currentRound', { round })}
+        {title}
       </Typography>
       <List>
         {
-          new Array(Math.floor(Object.keys(players).length / 2)).fill().map((_, i) => (
+          new Array(count).fill().map((_, i) => (
             <ListItem key={i}>
               <Grid container spacing={2}>
                 <Grid item xs={5}>
