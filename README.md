@@ -1,44 +1,60 @@
-# Next.js example
+# Liga Yu-Gi-Oh! Brasileira
 
-## How to use
+Brazilian Yu-Gi-Oh! League is a project made by PRRJCARDS and TCG Network with the aim of creating a competitive Brazilian community.
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+This system records players performances and match-ups through all seasons and series.
 
-<!-- #default-branch-switch -->
+## Getting Started
 
-```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs
-cd nextjs
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software
+
+- [Node.JS](https://nodejs.org)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Yarn 2+](https://yarnpkg.com/)
+- [Auth0 Account](https://auth0.com)
+
+### Installing
+
+This will help you to get a development env running
+
+- Copy environment variables template
+
+```
+cp .env.sample .env.local
 ```
 
-Install it and run:
+- Change the following environment variables
 
-```sh
-npm install
-npm run dev
+  - `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET` and `AUTH0_DOMAIN` from Auth0 Dashboard
+  - `DATABASE_URL` with the PostgreSQL connection URL
+  - `DATABASE_SKIP_SSL` use "true" if your database does not accept SSL connection (in development, for example). Remove it, otherwise (*recommended for production)
+
+
+- Install dependencies
+
+```
+yarn install
 ```
 
-or:
+- Start development server
 
-<!-- #default-branch-switch -->
+```
+yarn dev
+```
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs)
+## Contributing
 
-## The idea behind the example
+Feel free to open issues and PRs. I'll try to review as soon as I can.
 
-The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/guides/interoperability/#styled-components).
+## Built With
 
-## The link component
+* [NextJS](https://nextjs.org/) - Full-Stack framework
+* [MUI](https://mui.com/) - User Interface
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
-The example folder provides adapters for usage with MUI.
-More information [in the documentation](https://mui.com/guides/routing/#next-js).
+## Authors
 
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.
+* **[Guilherme Eiras](https://github.com/guieiras)** - *Concept and initial work*
