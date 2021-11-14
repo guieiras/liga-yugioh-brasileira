@@ -1,9 +1,12 @@
 import db from '../database'
 
-export async function searchMatches ({ seasonId, serieId, round }) {
+export async function searchMatches ({ seasonId, serieId, round, playoffs }) {
   const query = db('matches')
   if (seasonId) { query.where('season_id', seasonId) }
   if (serieId) { query.where('serie_id', serieId) }
+  if (playoffs) {
+    Array.isArray(playoffs) ? query.whereIn('playoff', playoffs) : query.where('playoff', playoffs)
+  }
   if (round === 'last') {
     const lastRound = (await query.clone().max('round', { as: 'round' }))[0].round
     query.where('round', lastRound || 1)
