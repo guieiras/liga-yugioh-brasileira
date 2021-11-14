@@ -3,31 +3,36 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useSession } from 'next-auth/react'
 import { deserialize, serialize } from 'superjson'
-import CircularProgress from '@mui/material/CircularProgress'
 import Alert from '@mui/material/Alert'
+import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
+import Button from '../../../../../src/components/Button'
 import AdminLayout from '../../../../../src/components/layouts/admin'
-import { authenticate } from '../../../../../src/middlewares/session'
-import { getSerieBySlug } from '../../../../../src/repositories/series'
-import { getSeasonBySlug } from '../../../../../src/repositories/seasons'
-import { get, post, put } from '../../../../../src/requests/client'
+import { ROUNDS } from '../../../../../src/components/playoffs/constants'
 import RoundsForm from '../../../../../src/components/rounds/form'
 import RoundsPanel from '../../../../../src/components/rounds/panel'
-import Button from '../../../../../src/components/Button'
+import PlayoffsPanel from '../../../../../src/components/playoffs/panel'
+import { authenticate } from '../../../../../src/middlewares/session'
+import { get, post, put } from '../../../../../src/requests/client'
+import { getSeasonBySlug } from '../../../../../src/repositories/seasons'
+import { getSerieBySlug } from '../../../../../src/repositories/series'
 
 export default function AdminSeasonMatches ({ data: json }) {
   const { t } = useTranslation()
   const { locale, season, serie } = deserialize(json)
   const { data: session } = useSession()
   const [roundMatches, setRoundMatches] = React.useState({})
+  const [playoffMatches, setPlayoffMatches] = React.useState({})
   const [players, setPlayers] = React.useState({})
   const [currentRound, setCurrentRound] = React.useState(null)
+  const [currentStep, setCurrentStep] = React.useState(null)
   const [lastRound, setLastRound] = React.useState(null)
+  const [playoffSteps, setPlayoffSteps] = React.useState([])
   const [editableRound, setEditableRound] = React.useState(null)
 
   React.useEffect(() => {
-    Promise.all([getParticipations(), getRound()])
+    Promise.all([getParticipations(), getRound(), getPlayoffSteps()])
   }, [])
 
   function handleNewRound () {
@@ -55,6 +60,18 @@ export default function AdminSeasonMatches ({ data: json }) {
     setPlayers(Object.fromEntries(results.map((result) => [result.id, result.name])))
   }
 
+  async function getPlayoffSteps () {
+    const playoffs = await get('playoffs', { season_id: season.id, serie_id: serie.id })
+    const steps = ROUNDS.filter(round => round.steps.find(step => playoffs.includes(step.index)))
+    setPlayoffSteps(steps.map(step => ({ ...step, loaded: false })))
+    if (steps.length) {
+      await getRoundMatches(steps[0], steps)
+      setCurrentStep(0)
+    } else {
+      setCurrentStep(null)
+    }
+  }
+
   async function getRound (round, force = false) {
     const roundParam = round || 'last'
     if (!roundMatches[round] || force) {
@@ -69,6 +86,26 @@ export default function AdminSeasonMatches ({ data: json }) {
     }
   }
 
+  async function getRoundMatches (round, baseSteps) {
+    if (round.loaded) return
+
+    const steps = round.steps
+    const matches = steps.reduce((memo, step) => ({ ...memo, [step.index]: [] }), { ...playoffMatches })
+    setPlayoffMatches(matches)
+
+    const results = await get('matches', {
+      season_id: season.id, serie_id: serie.id, playoffs: steps.map(step => step.index)
+    })
+
+    setPlayoffSteps(
+      (baseSteps || playoffSteps)
+        .map((step) => step.name === round.name ? { ...step, loaded: true } : step)
+    )
+    setPlayoffMatches(results.reduce((memo, match) => (
+      { ...memo, [match.playoff]: [...(memo[match.playoff] || []), match] }
+    ), matches))
+  }
+
   function cancelRound () {
     setEditableRound(null)
   }
@@ -81,10 +118,24 @@ export default function AdminSeasonMatches ({ data: json }) {
       { analysis_url: analysisUrl, replay_url: replayUrl, winner }
     )
 
+    if (result.round) updateRoundMatches(result)
+    if (result.playoff) updatePlayoffMatches(result)
+  }
+
+  function updateRoundMatches (newMatch) {
     setRoundMatches({
       ...roundMatches,
-      [result.round]: roundMatches[result.round].map((match) => (
-        match.id === result.id ? result : match
+      [newMatch.round]: roundMatches[newMatch.round].map((oldMatch) => (
+        newMatch.id === oldMatch.id ? newMatch : oldMatch
+      ))
+    })
+  }
+
+  function updatePlayoffMatches (newMatch) {
+    setPlayoffMatches({
+      ...playoffMatches,
+      [newMatch.playoff]: playoffMatches[newMatch.playoff].map((oldMatch) => (
+        newMatch.id === oldMatch.id ? newMatch : oldMatch
       ))
     })
   }
@@ -127,6 +178,10 @@ export default function AdminSeasonMatches ({ data: json }) {
             {t('participations.none')}
           </Alert>
           : <>
+          <Typography variant="h6" component="h2" sx={{ mt: 2 }}>
+            {t('rounds')}
+          </Typography>
+
           { Object.keys(roundMatches).length === 0 && currentRound !== 0
             ? <Paper sx={{ mt: 2, p: 2, textAlign: 'center' }}>
             <CircularProgress />
@@ -154,6 +209,22 @@ export default function AdminSeasonMatches ({ data: json }) {
               round={currentRound}
               sx={{ mt: 2 }}
             /> }
+
+            <Typography variant="h6" component="h2" sx={{ mt: 2 }}>
+              {t('playoffs')}
+            </Typography>
+
+            <PlayoffsPanel
+              matches={Object.fromEntries(
+                (playoffSteps[currentStep]?.steps || []).map(step => (
+                  [step.index, playoffMatches[step.index]]
+                ), [])
+              ) }
+              onGameUpdate={handleUpdate}
+              onNewRound={handleUpdate}
+              players={players}
+              currentStep={playoffSteps[currentStep]}
+              sx={{ mt: 2 }} />
           </>
       }
     </AdminLayout>
