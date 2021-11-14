@@ -39,14 +39,14 @@ export default function AdminSeasonMatches ({ data: json }) {
     setEditableRound(lastRound + 1)
   }
 
-  async function handleBack () {
-    setCurrentRound(currentRound - 1)
-    await getRound(currentRound - 1)
+  async function handleRound () {
+    setCurrentRound(currentRound + this)
+    await getRound(currentRound + this)
   }
 
-  async function handleForward () {
-    setCurrentRound(currentRound + 1)
-    await getRound(currentRound + 1)
+  async function handlePlayoff () {
+    setCurrentStep(currentStep + this)
+    await getPlayoffMatches(playoffSteps[currentStep + this])
   }
 
   function handleEdit () {
@@ -65,7 +65,7 @@ export default function AdminSeasonMatches ({ data: json }) {
     const steps = ROUNDS.filter(round => round.steps.find(step => playoffs.includes(step.index)))
     setPlayoffSteps(steps.map(step => ({ ...step, loaded: false })))
     if (steps.length) {
-      await getRoundMatches(steps[0], steps)
+      await getPlayoffMatches(steps[0], steps)
       setCurrentStep(0)
     } else {
       setCurrentStep(null)
@@ -86,7 +86,7 @@ export default function AdminSeasonMatches ({ data: json }) {
     }
   }
 
-  async function getRoundMatches (round, baseSteps) {
+  async function getPlayoffMatches (round, baseSteps) {
     if (round.loaded) return
 
     const steps = round.steps
@@ -200,9 +200,9 @@ export default function AdminSeasonMatches ({ data: json }) {
               lastRound={lastRound}
               loading={!roundMatches[currentRound]}
               matches={roundMatches[currentRound] || []}
-              onBack={handleBack}
+              onBack={handleRound.bind(-1)}
               onEdit={handleEdit}
-              onForward={handleForward}
+              onForward={handleRound.bind(1)}
               onGameUpdate={handleUpdate}
               onNewRound={handleNewRound}
               players={players}
@@ -222,8 +222,12 @@ export default function AdminSeasonMatches ({ data: json }) {
               ) }
               onGameUpdate={handleUpdate}
               onNewRound={handleUpdate}
+              onBack={handlePlayoff.bind(-1)}
+              onForward={handlePlayoff.bind(1)}
               players={players}
               currentStep={playoffSteps[currentStep]}
+              stepIndex={currentStep}
+              lastStep={playoffSteps.length - 1}
               sx={{ mt: 2 }} />
           </>
       }

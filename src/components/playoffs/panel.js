@@ -3,15 +3,18 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import ArrowBackIcon from '@mui/icons-material/ArrowBackIos'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos'
 import { useTranslation } from 'next-i18next'
 import MatchesEdit from '../matches/edit'
 import MatchesItem from '../matches/item'
 
 export default function PlayoffsPanel ({
-  loading, players, matches, onNewRound, onGameUpdate, sx, currentStep
+  loading, players, matches, onNewRound, onGameUpdate, sx, currentStep, stepIndex, lastStep, onBack, onForward
 }) {
   const [editableGame, setEditableGame] = React.useState(null)
   const { t } = useTranslation()
@@ -36,20 +39,29 @@ export default function PlayoffsPanel ({
         loading
           ? <CircularProgress sx={{ p: 2 }} />
           : <Stack alignItems="center" sx={{ mt: 2 }}>
-            <Typography variant="button">
-              {t(`playoffs.${currentStep.name}`)}
-            </Typography>
+            <Stack direction='row' justifyContent='space-between' sx={{ width: '100%' }}>
+              <IconButton disabled={stepIndex === 0} onClick={onBack} title={t('rounds.previous')}>
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography variant="button">
+                {t(`playoffs.${currentStep.name}`)}
+              </Typography>
+              <IconButton disabled={stepIndex === lastStep} onClick={onForward} title={t('rounds.next')}>
+                <ArrowForwardIcon />
+              </IconButton>
+            </Stack>
         {
           currentStep.steps.map((step) => (
             <Box key={step.index} sx={{ mt: 2, width: '100%' }}>
               {
                 (onNewRound || matches[step.index].length > 0) &&
-                  <Typography component='p' variant="button" sx={{ textAlign: 'center' }}>
+                  <Typography component='p' variant="overline" sx={{ textAlign: 'center' }}>
                     {t(`playoffs.${step.name}`)}
                   </Typography>
               }
               {
-                matches[step.index].length > 0 ? matches[step.index].map(match => (
+                matches[step.index].length > 0
+                  ? matches[step.index].map(match => (
                   <MatchesItem
                     key={match.id}
                     homePlayer={players[match.home_player_id]}
@@ -66,7 +78,8 @@ export default function PlayoffsPanel ({
                         match={match}
                       />}
                   </MatchesItem>
-                )) : <Typography component='p' variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
+                  ))
+                  : <Typography component='p' variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
                   {t('playoffs.none')}
                 </Typography>
               }
