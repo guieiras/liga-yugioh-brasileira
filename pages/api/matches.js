@@ -6,6 +6,7 @@ export default async function handler (req, res) {
   res.send(await searchMatches({
     seasonId: req.query.season_id,
     serieId: req.query.serie_id,
-    round: req.query.round
+    round: req.query.round,
+    playoffs: req.query.playoffs?.split(',').map((query) => parseInt(query))
   }))
 }
