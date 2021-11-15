@@ -42,7 +42,14 @@ export default function RoundsPanel ({
       {
         (typeof controls === 'undefined' || controls)
           ? <Stack direction='row' justifyContent='space-between'>
-          <IconButton disabled={round === 1} onClick={onBack} title={t('rounds.previous')}><ArrowBackIcon /></IconButton>
+          <IconButton
+            disabled={round === 1}
+            onClick={onBack}
+            sx={{ visibility: round === 1 ? 'hidden' : '' }}
+            title={t('rounds.previous')}
+          >
+            <ArrowBackIcon />
+          </IconButton>
           <Typography variant="button">{t('currentRound', { round })}</Typography>
           {
             round < lastRound

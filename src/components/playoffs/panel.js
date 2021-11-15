@@ -40,13 +40,23 @@ export default function PlayoffsPanel ({
           ? <CircularProgress sx={{ p: 2 }} />
           : <Stack alignItems="center" sx={{ mt: 2 }}>
             <Stack direction='row' justifyContent='space-between' sx={{ width: '100%' }}>
-              <IconButton disabled={stepIndex === 0} onClick={onBack} title={t('rounds.previous')}>
+              <IconButton
+                disabled={stepIndex === 0}
+                onClick={onBack}
+                sx={{ visibility: stepIndex === 0 ? 'hidden' : '' }}
+                title={t('rounds.previous')}
+              >
                 <ArrowBackIcon />
               </IconButton>
               <Typography variant="button">
                 {t(`playoffs.${currentStep.name}`)}
               </Typography>
-              <IconButton disabled={stepIndex === lastStep} onClick={onForward} title={t('rounds.next')}>
+              <IconButton
+                disabled={stepIndex === lastStep}
+                onClick={onForward}
+                sx={{ visibility: stepIndex === lastStep ? 'hidden' : '' }}
+                title={t('rounds.next')}
+              >
                 <ArrowForwardIcon />
               </IconButton>
             </Stack>
@@ -79,7 +89,7 @@ export default function PlayoffsPanel ({
                       />}
                   </MatchesItem>
                   ))
-                  : <Typography component='p' variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
+                  : onNewRound && <Typography component='p' variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
                   {t('playoffs.none')}
                 </Typography>
               }
