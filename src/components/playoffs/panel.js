@@ -77,7 +77,7 @@ export default function PlayoffsPanel ({
                     homePlayer={players[match.home_player_id]}
                     awayPlayer={players[match.away_player_id]}
                     match={match}
-                    onEdit={setEditableGame.bind(null, match.id)}
+                    onEdit={onGameUpdate && setEditableGame.bind(null, match.id)}
                   >
                     {editableGame === match.id &&
                       <MatchesEdit

@@ -57,7 +57,12 @@ export default function RoundsPanel ({
               <IconButton onClick={onForward} title={t('rounds.next')}><ArrowForwardIcon /></IconButton>
                 )
               : (
-                <IconButton disabled={!onNewRound} onClick={onNewRound} title={t('rounds.new')} sx={{ visibility: !onNewRound ? 'hidden' : '' }}>
+                <IconButton
+                  disabled={!onNewRound}
+                  onClick={onNewRound}
+                  sx={{ visibility: !onNewRound ? 'hidden' : '' }}
+                  title={t('rounds.new')}
+                >
                   <AddIcon />
                 </IconButton>
                 )
@@ -78,7 +83,7 @@ export default function RoundsPanel ({
               homePlayer={players[match.home_player_id]}
               awayPlayer={players[match.away_player_id]}
               match={match}
-              onEdit={() => { setEditableGame(match.id) }}
+              onEdit={onGameUpdate && (() => { setEditableGame(match.id) })}
             >
               { editableGame === match.id &&
                 <MatchesEdit
