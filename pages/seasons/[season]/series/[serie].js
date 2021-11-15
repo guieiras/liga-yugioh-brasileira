@@ -147,7 +147,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
               players={playerNames}
               round={currentRound}
             />
-            <PlayoffsPanel
+            { playoffSteps.length > 0 && <PlayoffsPanel
               currentStep={playoffSteps[currentStep]}
               lastStep={playoffSteps.length - 1}
               matches={Object.fromEntries(
@@ -159,7 +159,7 @@ export default function SeasonSerieShow ({ locale, seasonSlug, serieSlug }) {
               onForward={handlePlayoff.bind(1)}
               players={playerNames}
               stepIndex={currentStep}
-              sx={{ mt: 2 }} />
+              sx={{ mt: 2 }} /> }
           </Grid>
         </Grid>
       </>
