@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -9,12 +8,30 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import ArrowBackIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { useTranslation } from 'next-i18next'
 import MatchesEdit from '../matches/edit'
 import MatchesItem from '../matches/item'
+import Menu from '../Menu'
+import { ROUNDS } from './constants'
+
+function AddRoundButton ({ onClick, t }) {
+  return <Menu
+    icon={<AddCircleIcon />}
+    text={t('playoffs.new')}
+    items={ROUNDS.reduce((memo, round) => [
+      ...memo,
+      ...round.steps.map((step) => ({
+        text: t(`playoffs.${step.name}`),
+        action: () => onClick(step)
+      }))
+    ], [])}
+  />
+}
 
 export default function PlayoffsPanel ({
-  loading, players, matches, onNewRound, onGameUpdate, sx, currentStep, stepIndex, lastStep, onBack, onForward
+  currentStep, lastStep, loading, matches, players, onBack, onForward, onGameUpdate,
+  onNewRound, stepIndex, sx
 }) {
   const [editableGame, setEditableGame] = React.useState(null)
   const { t } = useTranslation()
@@ -26,10 +43,8 @@ export default function PlayoffsPanel ({
 
   if (!currentStep) {
     return <Paper sx={{ p: 3, textAlign: 'center', ...(sx || {}) }}>
-      { onNewRound
-        ? <Button onClick={onNewRound}>{t('rounds.first')}</Button>
-        : <Typography>{t('playoffs.none')}</Typography>
-      }
+      <Typography>{t('playoffs.none')}</Typography>
+      <AddRoundButton onClick={onNewRound} t={t} />
     </Paper>
   }
 
@@ -96,6 +111,9 @@ export default function PlayoffsPanel ({
             </Box>
           ))
         }
+        <Box sx={{ alignItems: 'flex-end', display: 'flex', flexDirection: 'column', width: '100%' }}>
+          <AddRoundButton onClick={onNewRound} t={t} />
+        </Box>
       </Stack>
       }
     </Paper>

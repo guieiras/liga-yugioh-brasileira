@@ -30,6 +30,7 @@ export default function AdminSeasonMatches ({ data: json }) {
   const [lastRound, setLastRound] = React.useState(null)
   const [playoffSteps, setPlayoffSteps] = React.useState([])
   const [editableRound, setEditableRound] = React.useState(null)
+  const [editablePlayoff, setEditablePlayoff] = React.useState(null)
 
   React.useEffect(() => {
     Promise.all([getParticipations(), getRound(), getPlayoffSteps()])
@@ -60,13 +61,22 @@ export default function AdminSeasonMatches ({ data: json }) {
     setPlayers(Object.fromEntries(results.map((result) => [result.id, result.name])))
   }
 
-  async function getPlayoffSteps () {
+  async function getPlayoffSteps (currentRound) {
+    let selectedStep = 0
     const playoffs = await get('playoffs', { season_id: season.id, serie_id: serie.id })
     const steps = ROUNDS.filter(round => round.steps.find(step => playoffs.includes(step.index)))
-    setPlayoffSteps(steps.map(step => ({ ...step, loaded: false })))
+
+    if (currentRound) {
+      selectedStep = steps.findIndex(
+        round => round.steps.find(step => step.index === currentRound.index)
+      )
+    } else {
+      setPlayoffSteps(steps.map(step => ({ ...step, loaded: false })))
+    }
+
     if (steps.length) {
-      await getPlayoffMatches(steps[0], steps)
-      setCurrentStep(0)
+      await getPlayoffMatches(steps[selectedStep], steps)
+      setCurrentStep(selectedStep)
     } else {
       setCurrentStep(null)
     }
@@ -110,6 +120,10 @@ export default function AdminSeasonMatches ({ data: json }) {
     setEditableRound(null)
   }
 
+  function cancelPlayoff () {
+    setEditablePlayoff(null)
+  }
+
   async function handleUpdate (match) {
     const { analysisUrl, replayUrl, winner } = match
 
@@ -151,6 +165,17 @@ export default function AdminSeasonMatches ({ data: json }) {
     setCurrentRound(editableRound)
     setEditableRound(null)
     setLastRound(Math.max(lastRound, editableRound))
+  }
+
+  async function savePlayoff (matches) {
+    await post(
+      'admin/matches',
+      { season_id: season.id, serie_id: serie.id, playoff: editablePlayoff.index, matches }
+    )
+
+    setPlayoffMatches({ ...playoffMatches, [editablePlayoff.index]: undefined })
+    getPlayoffSteps(editablePlayoff)
+    setEditablePlayoff(null)
   }
 
   return (
@@ -214,14 +239,15 @@ export default function AdminSeasonMatches ({ data: json }) {
               {t('playoffs')}
             </Typography>
 
-            <PlayoffsPanel
+            { editablePlayoff === null
+              ? <PlayoffsPanel
               matches={Object.fromEntries(
                 (playoffSteps[currentStep]?.steps || []).map(step => (
                   [step.index, playoffMatches[step.index]]
                 ), [])
               ) }
               onGameUpdate={handleUpdate}
-              onNewRound={handleUpdate}
+              onNewRound={(step) => setEditablePlayoff(step)}
               onBack={handlePlayoff.bind(-1)}
               onForward={handlePlayoff.bind(1)}
               players={players}
@@ -229,6 +255,15 @@ export default function AdminSeasonMatches ({ data: json }) {
               stepIndex={currentStep}
               lastStep={playoffSteps.length - 1}
               sx={{ mt: 2 }} />
+              : <RoundsForm
+                onCancel={cancelPlayoff}
+                onSubmit={savePlayoff}
+                matches={roundMatches[editableRound]}
+                matchCount={editablePlayoff.games}
+                players={players}
+                title={t(`playoffs.${editablePlayoff.name}`)}
+                sx={{ mt: 2 }}
+              /> }
           </>
       }
     </AdminLayout>
