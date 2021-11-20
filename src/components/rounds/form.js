@@ -12,7 +12,9 @@ import Typography from '@mui/material/Typography'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useTranslation } from 'next-i18next'
 
-export default function RoundsForm ({ matches, matchCount, title, onCancel, onSubmit, players, sx, ...props }) {
+export default function RoundsForm ({
+  children, onCancel, onSubmit, matches, matchCount, players, sx, title, ...props
+}) {
   const { t } = useTranslation()
   const [selectedPlayers, setSelectedPlayers] = React.useState([])
   const [options, setOptions] = React.useState([])
@@ -81,6 +83,7 @@ export default function RoundsForm ({ matches, matchCount, title, onCancel, onSu
       <Typography variant="button" component="p" sx={{ textAlign: 'center' }}>
         {title}
       </Typography>
+      { children }
       <List>
         {
           new Array(count).fill().map((_, i) => (
