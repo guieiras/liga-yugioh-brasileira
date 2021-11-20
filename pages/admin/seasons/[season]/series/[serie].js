@@ -64,8 +64,10 @@ export default function AdminSeasonMatches ({ data: json }) {
   }
 
   async function getParticipations (serieToFetch) {
-    const participations = await get(`admin/seasons/${season.id}/participations`, { serie_id: serieToFetch.id })
-    const results = await post('admin/players/search', { id: participations.map((participation) => participation.player_id) })
+    const results = await post(
+      'seasons_participations/search',
+      { participations: [{ serie_id: serieToFetch.id, season_id: season.id }] }
+    )
 
     setPlayers({ ...players, ...Object.fromEntries(results.map((result) => [result.id, result.name])) })
   }
@@ -182,7 +184,7 @@ export default function AdminSeasonMatches ({ data: json }) {
       { season_id: season.id, serie_id: serie.id, playoff: editablePlayoff.index, matches }
     )
 
-    setPlayoffMatches({ ...playoffMatches, [editablePlayoff.index]: undefined })
+    setPlayoffMatches({ ...playoffMatches, [editablePlayoff.index]: [] })
     setPlayoffSteps(
       playoffSteps.map(step => step.index === editablePlayoff.index ? { ...step, loaded: false } : step)
     )
