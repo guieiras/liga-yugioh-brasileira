@@ -2,7 +2,7 @@ import db from '../database'
 
 export async function getSeasons () {
   const seasonFields = [
-    'seasons.id', 'seasons.name', 'seasons.slug',
+    'seasons.id', 'seasons.name', 'seasons.slug', 'seasons.current',
     'seasons.created_at', 'seasons.updated_at'
   ]
 
