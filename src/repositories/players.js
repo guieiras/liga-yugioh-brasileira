@@ -15,7 +15,7 @@ export async function getPlayers () {
 
 export async function searchPlayers ({ name, id, nid }) {
   const query = db('players')
-  if (name) { query.where('name', 'like', `%${name}%`) }
+  if (name) { query.where('name', 'ilike', `%${name}%`) }
   if (id) { query.whereIn('id', Array.isArray(id) ? id : [id]) }
   if (nid) { query.whereNotIn('id', Array.isArray(nid) ? nid : [nid]) }
 
