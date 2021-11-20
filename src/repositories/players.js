@@ -23,19 +23,20 @@ export async function searchPlayers ({ name, id, nid }) {
 }
 
 export async function searchPlayersByParticipation (participations) {
-  const query =
-    db('players')
-      .join('seasons_participations', 'seasons_participations.player_id', 'players.id')
-      .distinct('players.id', 'players.name', 'players.state')
+  const participationQuery = db('seasons_participations').select('player_id')
+  const homePlayoffQuery = db('matches').select('home_player_id as player_id').whereNotNull('playoff')
+  const awayPlayoffQuery = db('matches').select('away_player_id as player_id').whereNotNull('playoff')
+  participations.forEach(participation => {
+    participationQuery.orWhere({ season_id: participation.season_id, serie_id: participation.serie_id })
+    homePlayoffQuery.orWhere({ season_id: participation.season_id, serie_id: participation.serie_id })
+    awayPlayoffQuery.orWhere({ season_id: participation.season_id, serie_id: participation.serie_id })
+  })
 
-  participations.forEach(participation => (
-    query.orWhere({
-      season_id: participation.season_id,
-      serie_id: participation.serie_id
-    })
-  ))
+  const filtered = participationQuery.union(homePlayoffQuery).union(awayPlayoffQuery)
 
-  return query
+  return db('players')
+    .select('players.id', 'players.name', 'players.state')
+    .joinRaw(`join (${filtered.toString()}) filtered on filtered.player_id = players.id`)
 }
 
 export async function createPlayer ({ name, state, konamiId }) {
