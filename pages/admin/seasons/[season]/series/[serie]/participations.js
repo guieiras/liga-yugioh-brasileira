@@ -9,12 +9,12 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close'
 import { deserialize, serialize } from 'superjson'
-import PlayerSearchBar from '../../../../../../src/components/PlayerSearchBar'
 import AdminLayout from '../../../../../../src/components/layouts/admin'
+import PlayerSearchBar from '../../../../../../src/components/PlayerSearchBar'
 import { authenticate } from '../../../../../../src/middlewares/session'
 import { getSeasonBySlug } from '../../../../../../src/repositories/seasons'
-import { del, get, post } from '../../../../../../src/requests/client'
 import { getSerieBySlug } from '../../../../../../src/repositories/series'
+import { del, get, post } from '../../../../../../src/requests/client'
 
 export default function AdminSeasonSeriesParticipations ({ data: json }) {
   const { t } = useTranslation()
@@ -23,11 +23,20 @@ export default function AdminSeasonSeriesParticipations ({ data: json }) {
   const [search, setSearch] = React.useState('')
   const [results, setResults] = React.useState([])
   const [players, setPlayers] = React.useState({})
+  const [seasonParticipants, setSeasonParticipants] = React.useState([])
   const [participants, setParticipants] = React.useState([])
 
   React.useEffect(() => {
     get(`admin/seasons/${season.id}/participations`).then((json) => {
-      setParticipants(json.reduce((memo, participant) => [...memo, participant.player_id], []))
+      searchPlayers({ id: json.map((participant) => participant.player_id) })
+      setSeasonParticipants(
+        json.reduce((memo, participant) => [...memo, participant.player_id], [])
+      )
+      setParticipants(
+        json.reduce((memo, participant) => (
+          participant.serie_id === serie.id ? [...memo, participant.player_id] : memo
+        ), [])
+      )
     })
   }, [])
 
@@ -63,7 +72,7 @@ export default function AdminSeasonSeriesParticipations ({ data: json }) {
       searchPlayers({ name: searchTerm })
       setResults(
         Object.values(players).filter((player) => {
-          return !participants.includes(player.id) &&
+          return !seasonParticipants.includes(player.id) && !participants.includes(player.id) &&
             player.name.toLowerCase().includes(searchTerm.toLowerCase())
         })
       )
@@ -78,10 +87,7 @@ export default function AdminSeasonSeriesParticipations ({ data: json }) {
       { playerId: e.id, serieId: serie.id }
     )
 
-    setParticipants([
-      ...participants,
-      e.id
-    ])
+    setParticipants([...participants, e.id])
     setSearch('')
     setResults([])
   }
