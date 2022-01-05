@@ -1,6 +1,6 @@
 {
   "name": "liga-yugioh-brasileira",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "dependencies": {
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",
